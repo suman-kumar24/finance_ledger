@@ -35,6 +35,10 @@ export interface Settings {
   backupEncrypted: boolean;
   backupAccount: string | null;
   lastBackupAt: number | null;
+  /** The user agreed that the phone's speech service may process audio online. */
+  voiceOnlineAllowed: boolean;
+  /** Speech language: follows the app language unless changed. */
+  voiceLanguage: 'en-IN' | 'hi-IN' | null;
   smsEnabled: boolean;
   smsListenNew: boolean;
   smsLastScanAt: number | null;
@@ -64,6 +68,8 @@ export const DEFAULT_SETTINGS: Settings = {
   backupEncrypted: false,
   backupAccount: null,
   lastBackupAt: null,
+  voiceOnlineAllowed: false,
+  voiceLanguage: null,
   smsEnabled: false,
   smsListenNew: false,
   smsLastScanAt: null,
@@ -79,6 +85,7 @@ export const DEVICE_ONLY_SETTINGS: readonly (keyof Settings)[] = [
   'backupEncrypted',
   'backupAccount',
   'lastBackupAt',
+  'voiceOnlineAllowed',
   'smsEnabled',
   'smsListenNew',
   'smsLastScanAt',

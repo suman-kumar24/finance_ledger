@@ -411,3 +411,100 @@ describe('Phase 5 screens', () => {
     expect(screen.getByText('Not enough data yet')).toBeTruthy();
   });
 });
+
+describe('Phase 6: type or say it', () => {
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const Keywords = require('@/app/settings/keywords').default;
+  const { listKeywords, saveKeyword } = require('@/data/keywords');
+  const { parsedToForm } = require('@/features/QuickText');
+  const { parseEntry } = require('@/parse');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+
+  it('fills the sheet from a typed phrase, highlights doubts and never saves by itself', async () => {
+    const { bank } = seedBasics(db);
+    await renderScreen(<QuickAdd />);
+    const input = screen.getByLabelText('Describe the entry in words');
+    await fireEvent.changeText(input, '400 on food kal via UPI');
+    await fireEvent(input, 'submitEditing');
+    expect(screen.getByText('400')).toBeTruthy();
+    expect(listTransactions(db)).toHaveLength(0);
+    // "kal" was a guess, so the date chip is flagged for checking.
+    expect(screen.getByLabelText('Date: Yesterday')).toBeTruthy();
+    await fireEvent.press(screen.getByLabelText('Save entry'));
+    const [tx] = listTransactions(db);
+    expect(tx).toMatchObject({
+      amount: 400_00,
+      method: 'upi',
+      accountId: bank.id,
+      type: 'expense',
+    });
+    expect(listCategories(db).find((c) => c.id === tx!.categoryId)?.systemKey).toBe('food');
+  });
+
+  it('learns the payee against the category the user chose', async () => {
+    seedBasics(db);
+    await renderScreen(<QuickAdd />);
+    const input = screen.getByLabelText('Describe the entry in words');
+    await fireEvent.changeText(input, 'paid 640 to Sharma Stores');
+    await fireEvent(input, 'submitEditing');
+    await fireEvent.press(screen.getByLabelText('Groceries'));
+    await fireEvent.press(screen.getByLabelText('Save entry'));
+    const groceries = listCategories(db).find((c) => c.systemKey === 'groceries')!;
+    expect(listKeywords(db)).toMatchObject([
+      { keyword: 'sharma stores', categoryId: groceries.id, origin: 'learned' },
+    ]);
+    const again = parseEntry('sharma stores 300', {
+      today,
+      accounts: [],
+      categories: listCategories(db),
+      userKeywords: listKeywords(db),
+    });
+    expect(again.categoryId).toBe(groceries.id);
+  });
+
+  it('does not let learning overwrite a keyword the user set', () => {
+    seedBasics(db);
+    const [a, b] = listCategories(db);
+    saveKeyword(db, 'Chai Point', a!.id, 'user');
+    saveKeyword(db, 'chai point', b!.id, 'learned');
+    expect(listKeywords(db)).toMatchObject([
+      { keyword: 'chai point', categoryId: a!.id, origin: 'user' },
+    ]);
+    saveKeyword(db, 'x', a!.id, 'user');
+    expect(listKeywords(db)).toHaveLength(1);
+  });
+
+  it('maps a parse result onto the form, leaving unknown fields alone', () => {
+    const changes = parsedToForm(
+      {
+        type: 'expense',
+        amount: 1_250_50,
+        day: today,
+        categoryId: null,
+        accountId: null,
+        toAccountId: null,
+        method: null,
+        payee: null,
+        uncertain: [],
+        categoryKeyword: null,
+      },
+      2,
+      true,
+    );
+    expect(changes).toEqual({
+      type: 'expense',
+      day: today,
+      source: 'voice',
+      amountText: '1250.50',
+    });
+  });
+
+  it('lists and adds keywords in settings', async () => {
+    seedBasics(db);
+    const food = listCategories(db).find((c) => c.systemKey === 'food')!;
+    saveKeyword(db, 'tapri', food.id, 'user');
+    await renderScreen(<Keywords />);
+    expect(screen.getByText('tapri')).toBeTruthy();
+    expect(screen.getByLabelText('Remove tapri')).toBeTruthy();
+  });
+});

@@ -89,3 +89,19 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | Planned purchase bought | Creates an `expense` with the purchase name as payee and links it; deleting the plan later keeps the expense | Brief section 4. |
 | Reports | Trend over the last 6 or 12 periods, breakdown by top-level category, and change against the previous period sorted by biggest mover | Brief section 5.7. |
 | Charts | Hand-built with react-native-svg. Each chart is one accessible element with a spoken summary, and the same numbers are listed as text underneath | No chart library; nothing relies on colour. |
+
+## Phase 6: voice and text entry
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Parser | Deterministic token pipeline in `src/parse`: date, accounts, amount, method, type, category, payee, in that order, each claiming the words it used | Order matters: "card 4321" must be read as an account before the amount finder sees the digits. |
+| Number arithmetic | Integers in hundredths throughout ("1.2k" is exactly 1,200.00) | Same no-float rule as the rest of the app. |
+| Romanised Hindi spelling | Words are compared after a spelling key (`aa` to `a`, `w` to `v`, `z` to `j`, doubled letters collapsed), and a test proves no key maps to two numbers | "chaar"/"char", "hazaar"/"hajar", "ikyawan"/"ikyavan" all work without listing every spelling. |
+| Ambiguous words | "do", "so", "bara", "tera", "sat" count as numbers only before a multiplier ("do sau"), never alone | They are ordinary English or Hindi words too. |
+| Several numbers | A number next to a currency mark wins; otherwise the largest wins and the amount is flagged for checking | "2 pizzas 600" should be 600, but the user should look. |
+| "kal" | Past (yesterday) unless the sentence has future words ("dena hai", "karna hai"); flagged as uncertain when nothing disambiguates it. "kal raat" is last night | Brief section 6: default to the past for expenses. |
+| Day and month without a year | The most recent such date, unless that is more than a month ahead, when last year is meant | Entries are nearly always about the past. |
+| Category match | User and learned keywords first, then the longest phrase, then the category's own name, then the built-in dictionary; restricted to the kind of entry (income or expense) | "school fees" must beat "fees". |
+| Learning | On save, the payee is remembered against the category chosen; if the user corrected the parser's guess, that keyword is re-pointed too. A keyword the user typed in Settings is never overwritten by learning | Brief section 6. |
+| Never saves silently | A parse only fills the quick-add sheet; guessed or missing fields get a dashed warning outline, a "?" icon and are named in `uncertain` | Brief section 6. |
+| Speech | `expo-speech-recognition` with `en-IN` / `hi-IN` (toggle on the sheet). On-device recognition is required when the phone supports it. If it does not, the user is told that Android's speech service may send audio to its servers and must agree once before the microphone is used | Honest about the one place audio could leave the phone; typing is always fully offline. |

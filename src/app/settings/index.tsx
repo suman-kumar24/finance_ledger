@@ -67,6 +67,13 @@ export default function Settings() {
           subtitle={t('settings.recurringSub')}
           onPress={() => router.push('/settings/recurring')}
         />
+        <Divider />
+        <Row
+          icon="book-alphabet"
+          title={t('keywords.title')}
+          subtitle={t('keywords.sub')}
+          onPress={() => router.push('/settings/keywords')}
+        />
       </Card>
 
       <SectionTitle>{t('settings.sectionApp')}</SectionTitle>

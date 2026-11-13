@@ -11,7 +11,7 @@ import { addDays } from '@/domain/dates';
 import { currencyInfo, groupDigits } from '@/domain/money';
 import type { PaymentMethod, TransactionType } from '@/domain/types';
 import { PAYMENT_METHODS } from '@/domain/types';
-import { afterEntrySaved } from '@/features/afterSave';
+import { afterEntrySaved, type ParsedHint } from '@/features/afterSave';
 import { QuickText } from '@/features/QuickText';
 import { METHOD_ICON, METHOD_LABEL, TYPE_ICON, TYPE_LABEL } from '@/features/txDisplay';
 import {
@@ -70,6 +70,7 @@ export default function QuickAdd() {
   );
   const [typing, setTyping] = useState(false);
   const [uncertain, setUncertain] = useState<Set<UncertainField>>(new Set());
+  const [hint, setHint] = useState<ParsedHint | undefined>(undefined);
   const confirm = (field: UncertainField) =>
     setUncertain((current) => {
       if (!current.has(field)) return current;
@@ -136,7 +137,7 @@ export default function QuickAdd() {
     try {
       const saved = save(editing?.id);
       if (!saved) return;
-      afterEntrySaved(saved, form.payee);
+      afterEntrySaved(saved, form.payee, hint);
       showSnackbar(
         saved.status === 'scheduled'
           ? t('quick.savedScheduled')
@@ -297,9 +298,10 @@ export default function QuickAdd() {
               lookups={lookups}
               today={today}
               onFocusChange={setTyping}
-              onParsed={(changes, doubtful) => {
+              onParsed={(changes, doubtful, parsedHint) => {
                 patch(changes);
                 setUncertain(new Set(doubtful));
+                setHint(parsedHint);
                 if (changes.payee || changes.note) setDetails(true);
               }}
             />
