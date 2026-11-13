@@ -42,3 +42,23 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | Budget alerts | One alert per level (warning, over, a further 10% over) per budget series per period; if one entry crosses several levels only the highest fires | Avoids three notifications from one save. |
 | Pace | Even spread of the limit over the period; within 5% of the limit either side is "on pace" | Simple and explainable. |
 | Net worth | Non-archived accounts only | Archiving is how an account is closed. |
+
+## Phase 3: core UI
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Live queries | Repositories bump a change counter after every write; `useLive` re-runs its (synchronous, indexed) query when it changes | Deterministic, works the same in the app and in Jest, and avoids threading async state through every screen. |
+| Navigation | Five tabs (Overview, Transactions, Accounts, Plans, Reports); Settings opens from the Overview header; quick add is a transparent modal route styled as a bottom sheet | Keeps the tab bar to five and gives quick add its own back-stack entry. |
+| Quick add | Custom amount keypad shown first; most-used categories as chips; account, method and date default from the last entry of that type | The common case is amount, category, Save. |
+| Future-dated entries | Saved as `scheduled`; cleared automatically when their day arrives (on open or foreground) | The user explicitly scheduled them. |
+| Transfer to a card | Stored as `card_payment` however it was entered | Guarantees it is never counted as spending. |
+| Category on transfers | Dropped: money moving between your own accounts has no spending category | Prevents accidental double counting through a category. |
+| Deleting an account | Blocked when any transaction or recurring rule refers to it; the dialog offers "Archive instead" | Brief section 11. |
+| Deleting a category | A used category (or one with subcategories) is archived; an unused one is deleted | Past months keep their labels. |
+| Delete all data | Two confirmations; also clears the PIN from the secure store | It cannot be undone. |
+| App lock | PIN stored only as a salted PBKDF2-SHA256 hash in the Keystore-backed secure store, outside the database; biometric unlock is optional; relock after 30 seconds in the background; rising delay after 5 wrong PINs | The PIN never appears in a backup or export. |
+| Recent-apps privacy | `FLAG_SECURE` through expo-screen-capture, on by default, with a toggle | Brief section 10. |
+| Icons | MaterialCommunityIcons only, imported as a single set | One font in the bundle; a test checks every icon name exists. |
+| Strings | Flat key tables `en.ts` and `hi.ts`; the Hindi table's type requires every English key; a test checks placeholders match and every key used by a screen exists | Missing translations fail the build. |
+| Accessibility | Every control has a role and label, touch targets are at least 48dp, status pills always carry an icon and a word, amounts use `adjustsFontSizeToFit` with a capped font multiplier | Brief section 5. |
+| Screen tests | Screens are rendered in Jest with React Native Testing Library against real in-memory SQLite; only native modules are mocked | Catches wiring mistakes that unit tests of pure functions cannot. |

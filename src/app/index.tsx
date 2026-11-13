@@ -1,9 +1,8 @@
-import { Text, View } from 'react-native';
+import { Redirect } from 'expo-router';
+
+import { useSettings } from '@/hooks/useSettings';
 
 export default function Index() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Ledger</Text>
-    </View>
-  );
+  const { onboarded } = useSettings();
+  return <Redirect href={onboarded ? '/(tabs)' : '/onboarding'} />;
 }
