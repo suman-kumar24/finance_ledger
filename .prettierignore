@@ -7,3 +7,5 @@ drizzle
 package-lock.json
 demo
 *.md
+src/i18n/en.ts
+src/i18n/hi.ts

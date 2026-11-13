@@ -1,6 +1,11 @@
+import { getDb } from '@/db/client';
 import type { Transaction } from '@/domain/types';
+import { fireBudgetAlerts, syncNotifications } from '@/notify';
 
-/** Hook point after an entry is saved (budget alerts, parser learning). */
-export function afterEntrySaved(_tx: Transaction, _typedPayee: string): void {
-  // Filled in by later phases.
+/** Runs after an entry is saved: budget alerts, then refreshed reminders. */
+export function afterEntrySaved(tx: Transaction, _typedPayee: string): void {
+  const db = getDb();
+  void fireBudgetAlerts(db, tx.day)
+    .catch(() => [])
+    .then(() => syncNotifications(db));
 }

@@ -1,0 +1,490 @@
+tab.overview	Overview	सारांश
+tab.transactions	Transactions	लेन-देन
+tab.accounts	Accounts	खाते
+tab.plans	Plans	योजनाएँ
+tab.reports	Reports	रिपोर्ट
+common.back	Back	वापस
+common.cancel	Cancel	रद्द करें
+common.close	Close	बंद करें
+common.colour	Colour	रंग
+common.colourN	Colour {n}	रंग {n}
+common.delete	Delete	हटाएँ
+common.edit	Edit	बदलें
+common.invalidAmount	Enter a valid amount	सही रकम लिखें
+common.next	Next	आगे
+common.nextMonth	Next month	अगला महीना
+common.none	None	कोई नहीं
+common.optional	Optional	वैकल्पिक
+common.previousMonth	Previous month	पिछला महीना
+common.remove	Remove	हटाएँ
+common.save	Save	सेव करें
+common.seeAll	See all	सभी देखें
+common.skip	Skip	छोड़ें
+common.today	Today	आज
+common.uncategorized	Uncategorised	बिना श्रेणी
+common.undo	Undo	वापस लाएँ
+common.yesterday	Yesterday	कल
+month.1	January	जनवरी
+month.2	February	फ़रवरी
+month.3	March	मार्च
+month.4	April	अप्रैल
+month.5	May	मई
+month.6	June	जून
+month.7	July	जुलाई
+month.8	August	अगस्त
+month.9	September	सितंबर
+month.10	October	अक्टूबर
+month.11	November	नवंबर
+month.12	December	दिसंबर
+weekday.0	Sun	रवि
+weekday.1	Mon	सोम
+weekday.2	Tue	मंगल
+weekday.3	Wed	बुध
+weekday.4	Thu	गुरु
+weekday.5	Fri	शुक्र
+weekday.6	Sat	शनि
+type.expense	Expense	खर्च
+type.income	Income	आमदनी
+type.transfer	Transfer	ट्रांसफ़र
+type.card_payment	Card bill payment	कार्ड बिल भुगतान
+type.refund	Refund / cashback	रिफंड / कैशबैक
+type.adjustment	Adjustment	समायोजन
+method.upi	UPI	UPI
+method.card	Card	कार्ड
+method.cash	Cash	नकद
+method.netbanking	Net banking	नेट बैंकिंग
+method.wallet	Wallet	वॉलेट
+method.other	Other	अन्य
+source.manual	Typed	हाथ से
+source.voice	Voice	आवाज़
+source.sms	SMS	SMS
+source.recurring	Recurring	आवर्ती
+source.import	Imported	आयात
+accountType.bank	Bank accounts	बैंक खाते
+accountType.cash	Cash	नकद
+accountType.wallet	Wallets	वॉलेट
+accountType.credit_card	Credit cards	क्रेडिट कार्ड
+accountType.investment	Investments	निवेश
+accountType.savings	Savings	बचत
+overview.spentThisMonth	Spent this month	इस महीने खर्च
+overview.spent	Spent	खर्च
+overview.spentA11y	Spent {amount}	{amount} खर्च हुए
+overview.budgetUsedA11y	{spent} spent of {limit} budget	{limit} के बजट में से {spent} खर्च
+overview.ofBudget	of {limit} budget	{limit} के बजट में से
+overview.dayOf	day {day} of {total}	{total} में से दिन {day}
+overview.paceAhead	Ahead of pace	रफ़्तार से ज़्यादा
+overview.paceOn	On pace	रफ़्तार ठीक
+overview.paceUnder	Under pace	रफ़्तार से कम
+overview.perDay	About {amount} a day keeps you within budget	रोज़ लगभग {amount} खर्च करें तो बजट में रहेंगे
+overview.setBudget	Set a budget	बजट बनाएँ
+overview.income	Income	आमदनी
+overview.saved	Saved / invested	बचत / निवेश
+overview.left	Left over	बाकी
+overview.emptyTitle	Nothing recorded yet this month	इस महीने अभी कुछ दर्ज नहीं
+overview.emptyBody	Tap + to add your first expense. It takes a few seconds.	पहला खर्च जोड़ने के लिए + दबाएँ। कुछ ही सेकंड लगेंगे।
+overview.emptyPastTitle	Nothing was recorded in this month	इस महीने कुछ दर्ज नहीं था
+overview.budgets	Budgets	बजट
+overview.topCategories	Top categories	सबसे ज़्यादा खर्च
+overview.categoryA11y	{name}: {amount}, {percent} percent of spending	{name}: {amount}, खर्च का {percent} प्रतिशत
+budget.left	{amount} left	{amount} बाकी
+budget.overBy	{amount} over	{amount} ज़्यादा
+budget.over	Over budget	बजट से ज़्यादा
+budget.nearLimit	Near limit	सीमा के पास
+budget.onTrack	On track	ठीक चल रहा
+budget.rowA11y	{name}: {spent} of {limit}, {percent} percent, {state}	{name}: {limit} में से {spent}, {percent} प्रतिशत, {state}
+tx.count	{count} entries	{count} प्रविष्टियाँ
+tx.filters	Filters	फ़िल्टर
+tx.filtersActive	Filters, some are on	फ़िल्टर, कुछ चालू हैं
+tx.search	Search transactions	लेन-देन खोजें
+tx.searchPlaceholder	Search payee, note, category or amount	नाम, नोट, श्रेणी या रकम खोजें
+tx.clearSearch	Clear search	खोज मिटाएँ
+tx.clearFilters	Clear filters	फ़िल्टर हटाएँ
+tx.applyFilters	Apply	लागू करें
+tx.noMatches	No matching transactions	कोई मेल खाता लेन-देन नहीं
+tx.noMatchesBody	Try a different search or clear the filters.	दूसरी खोज आज़माएँ या फ़िल्टर हटाएँ।
+tx.emptyTitle	No transactions yet	अभी कोई लेन-देन नहीं
+tx.emptyBody	Everything you add shows up here, grouped by day.	जो भी आप जोड़ेंगे वह यहाँ दिन के हिसाब से दिखेगा।
+tx.deleted	Transaction deleted	लेन-देन हटाया गया
+tx.actions	Transaction	लेन-देन
+tx.rowHint	Opens this entry to edit. Swipe for edit and delete.	बदलने के लिए खोलें। बदलने या हटाने के लिए स्वाइप करें।
+tx.scheduled	Scheduled	तय किया हुआ
+tx.dayHeaderA11y	{day}, spent {amount}	{day}, {amount} खर्च
+quick.add	Add transaction	लेन-देन जोड़ें
+quick.addHint	Opens quick add	जल्दी जोड़ने की शीट खुलेगी
+quick.title	Add entry	नई प्रविष्टि
+quick.editTitle	Edit entry	प्रविष्टि बदलें
+quick.type	Type of entry	प्रविष्टि का प्रकार
+quick.pad	Amount keypad	रकम कीपैड
+quick.backspace	Delete last digit. Hold to clear.	आख़िरी अंक मिटाएँ। सब मिटाने के लिए दबाए रखें।
+quick.decimalPoint	Decimal point	दशमलव
+quick.amountA11y	Amount {amount}	रकम {amount}
+quick.amountHint	Use the keypad below to change it	बदलने के लिए नीचे का कीपैड इस्तेमाल करें
+quick.checkThis	Please check this	कृपया इसे जाँच लें
+quick.category	Category	श्रेणी
+quick.allCategories	All	सभी
+quick.account	Account	खाता
+quick.from	From	से
+quick.to	To	को
+quick.chooseAccount	Choose account	खाता चुनें
+quick.chooseTo	Choose where to	कहाँ भेजना है चुनें
+quick.method	Paid by	भुगतान का तरीका
+quick.date	Date	तारीख
+quick.moreDetails	Details	विवरण
+quick.lessDetails	Hide details	विवरण छिपाएँ
+quick.payee	Paid to	किसे दिया
+quick.payer	Received from	किससे मिला
+quick.note	Note	नोट
+quick.tags	Tags	टैग
+quick.tagsHint	Separate with commas	अल्पविराम से अलग करें
+quick.save	Save entry	प्रविष्टि सेव करें
+quick.saved	Saved	सेव हो गया
+quick.updated	Updated	बदल दिया गया
+quick.savedScheduled	Scheduled for later	बाद के लिए तय किया गया
+quick.saveFailed	Could not save. Check the accounts and amount.	सेव नहीं हुआ। खाते और रकम जाँचें।
+quick.willBeScheduled	Future date: saved as scheduled	आगे की तारीख: तय प्रविष्टि के रूप में सेव होगी
+quick.beforeOpening	This is before {name}'s opening date, so it shows in reports but does not change the balance.	यह {name} की शुरुआती तारीख से पहले का है, इसलिए रिपोर्ट में दिखेगा पर बैलेंस नहीं बदलेगा।
+quick.lowersBalance	Lowers balance	बैलेंस घटाता है
+quick.raisesBalance	Raises balance	बैलेंस बढ़ाता है
+quick.needAccountTitle	Add an account first	पहले एक खाता जोड़ें
+quick.needAccountBody	Entries need an account to belong to, such as your bank account or cash.	हर प्रविष्टि किसी खाते से जुड़ती है, जैसे बैंक खाता या नकद।
+account.add	Add account	खाता जोड़ें
+account.edit	Edit account	खाता बदलें
+account.emptyTitle	No accounts yet	अभी कोई खाता नहीं
+account.emptyBody	Add your bank accounts, cash, wallets and credit cards to see where your money is.	अपना पैसा कहाँ है यह देखने के लिए बैंक खाते, नकद, वॉलेट और क्रेडिट कार्ड जोड़ें।
+account.netWorth	Net worth	कुल संपत्ति
+account.assets	Assets	संपत्ति
+account.cardsOwed	Owed on cards	कार्ड पर बकाया
+account.available	Available to spend	खर्च के लिए उपलब्ध
+account.balance	Balance	बैलेंस
+account.openHint	Opens account details	खाते का विवरण खुलेगा
+account.type	Account type	खाते का प्रकार
+account.name	Name	नाम
+account.namePlaceholder	For example: Salary account	जैसे: वेतन खाता
+account.namePlaceholderCard	For example: Rewards card	जैसे: रिवॉर्ड कार्ड
+account.nameRequired	Give the account a name	खाते को एक नाम दें
+account.openingBalance	Balance right now ({symbol})	अभी का बैलेंस ({symbol})
+account.openingHint	What the account holds on the start date below.	नीचे दी गई तारीख को खाते में कितना है।
+account.openingOwed	Amount owed right now ({symbol})	अभी बकाया रकम ({symbol})
+account.openingOwedHint	The total outstanding on the card on the start date below.	नीचे दी गई तारीख को कार्ड पर कुल बकाया।
+account.openingDate	Start tracking from	कब से हिसाब रखना है
+account.creditLimit	Credit limit ({symbol})	क्रेडिट सीमा ({symbol})
+account.statementDay	Statement day	स्टेटमेंट का दिन
+account.dueDay	Payment due day	भुगतान का दिन
+account.dayInvalid	Use a day from 1 to 31	1 से 31 के बीच का दिन लिखें
+account.cycleHint	The day of the month your statement is generated and the day payment is due. Used to show the current bill and unbilled spending.	महीने का वह दिन जब स्टेटमेंट बनता है और वह दिन जब भुगतान देना होता है। इससे मौजूदा बिल और बिना बिल का खर्च दिखता है।
+account.last4	Last 4 digits	आख़िरी 4 अंक
+account.last4Hint	Only shown as a label and used to match bank SMS alerts.	सिर्फ़ पहचान के लिए दिखते हैं और बैंक SMS से मिलाने के काम आते हैं।
+account.saved	Account saved	खाता सेव हो गया
+account.archive	Archive account	खाता संग्रह में रखें
+account.archiveHint	Hides the account but keeps its history	खाता छिप जाएगा पर उसका इतिहास बना रहेगा
+account.archived	Account archived	खाता संग्रह में रखा गया
+account.archivedPill	Archived	संग्रहित
+account.restore	Restore	वापस लाएँ
+account.restored	Account restored	खाता वापस लाया गया
+account.delete	Delete account	खाता हटाएँ
+account.deleteTitle	Delete this account?	यह खाता हटाएँ?
+account.deleteBody	"{name}" will be removed permanently.	"{name}" हमेशा के लिए हट जाएगा।
+account.deleted	Account deleted	खाता हटाया गया
+account.inUseTitle	This account has history	इस खाते में इतिहास है
+account.inUseBody	{count} entries use this account, so it cannot be deleted without changing past months. You can archive it instead: it disappears from lists but its history stays.	{count} प्रविष्टियाँ इस खाते से जुड़ी हैं, इसलिए इसे हटाने से पिछले महीने बदल जाएँगे। इसकी जगह इसे संग्रह में रख सकते हैं: यह सूची से हट जाएगा पर इतिहास बना रहेगा।
+account.archiveInstead	Archive instead	संग्रह में रखें
+account.notFound	This account no longer exists	यह खाता अब मौजूद नहीं है
+account.recent	Recent transactions	हाल के लेन-देन
+account.noTransactions	No transactions in this account yet	इस खाते में अभी कोई लेन-देन नहीं
+account.openedWith	Tracking from {date}, starting at {amount}.	{date} से हिसाब, शुरुआत {amount} से।
+account.openedOwing	Tracking from {date}, starting with {amount} owed.	{date} से हिसाब, शुरुआत में {amount} बकाया।
+card.outstanding	Outstanding	कुल बकाया
+card.unbilled	Unbilled	बिना बिल का
+card.currentBill	Current bill	मौजूदा बिल
+card.noBill	No bill	कोई बिल नहीं
+card.paid	Paid	चुका दिया
+card.due	Due	देय
+card.dueSoon	Due soon	जल्द देय
+card.dueToday	Due today	आज देय
+card.overdue	Overdue	देर हो गई
+card.statementOn	Statement of {date}	{date} का स्टेटमेंट
+card.dueOn	due {date}	{date} तक देय
+card.minDue	minimum {amount}	न्यूनतम {amount}
+card.noCycle	Add a statement day to see your bill and unbilled spending separately.	बिल और बिना बिल का खर्च अलग देखने के लिए स्टेटमेंट का दिन जोड़ें।
+card.paidOfTotal	{paid} paid of {total}	{total} में से {paid} चुकाया
+card.payBill	Pay bill	बिल चुकाएँ
+card.utilisation	{percent}% of {limit} limit used	{limit} सीमा का {percent}% इस्तेमाल
+card.utilisationA11y	{percent} percent of the {limit} credit limit used	{limit} क्रेडिट सीमा का {percent} प्रतिशत इस्तेमाल
+card.available	{amount} available	{amount} उपलब्ध
+card.cycles	Statement cycles	स्टेटमेंट चक्र
+card.cycleOpen	Open	चालू
+card.cycleClosed	Closed	बंद
+card.cycleSpent	spent {amount}	{amount} खर्च
+card.cycleCredits	refunds {amount}	रिफंड {amount}
+card.cyclePaid	paid {amount}	{amount} चुकाया
+card.cycleA11y	Cycle {start} to {end}: total {total}, spent {purchases}	चक्र {start} से {end}: कुल {total}, खर्च {purchases}
+card.statementDetails	Statement details	स्टेटमेंट का विवरण
+card.statementSaved	Statement details saved	स्टेटमेंट का विवरण सेव हो गया
+card.computedTotalHint	Statement total worked out from your entries.	आपकी प्रविष्टियों से निकाला गया स्टेटमेंट का कुल।
+card.minDueLabel	Minimum amount due	न्यूनतम देय रकम
+card.statedTotalLabel	Total on the printed statement	छपे स्टेटमेंट पर कुल रकम
+card.statedTotalHint	Fill this in if the statement shows a different total, for example because of interest or fees.	अगर स्टेटमेंट पर कुल रकम अलग है, जैसे ब्याज या शुल्क के कारण, तो यहाँ लिखें।
+card.payAmount	Amount to pay	कितना चुकाना है
+card.payFullBill	Full bill	पूरा बिल
+card.payMinimum	Minimum due	न्यूनतम देय
+card.payAll	Everything owed	पूरा बकाया
+card.payFrom	From {name}	{name} से
+card.needSource	Add a bank account or cash account to pay from.	भुगतान के लिए बैंक या नकद खाता जोड़ें।
+card.lowBalance	{name} only has {amount}.	{name} में सिर्फ़ {amount} हैं।
+card.paymentNote	A bill payment moves money from your bank to the card. It is not counted as spending, because the purchases were already counted.	बिल भुगतान आपके बैंक से कार्ड में पैसा भेजता है। इसे खर्च नहीं गिना जाता, क्योंकि खरीदारी पहले ही गिनी जा चुकी है।
+card.paymentPayee	{name} bill	{name} बिल
+card.paymentSaved	Payment recorded	भुगतान दर्ज हो गया
+card.recordPayment	Record payment	भुगतान दर्ज करें
+reconcile.title	Check balance	बैलेंस मिलाएँ
+reconcile.action	Check balance	बैलेंस मिलाएँ
+reconcile.actionFor	Check balance of {name}	{name} का बैलेंस मिलाएँ
+reconcile.appBalance	Balance in Ledger	Ledger में बैलेंस
+reconcile.appOwed	Owed, according to Ledger	Ledger के हिसाब से बकाया
+reconcile.lastChecked	Last checked on {date}	पिछली बार {date} को मिलाया
+reconcile.enterBalance	Balance shown in your bank app	बैंक ऐप में दिख रहा बैलेंस
+reconcile.enterBalanceHint	Type the real balance exactly as your bank shows it.	असली बैलेंस वैसा ही लिखें जैसा बैंक दिखाता है।
+reconcile.enterOwed	Amount owed shown by the card	कार्ड पर दिख रही बकाया रकम
+reconcile.enterOwedHint	Type the total outstanding from the card app or statement.	कार्ड ऐप या स्टेटमेंट से कुल बकाया लिखें।
+reconcile.matched	Everything matches	सब कुछ मिल रहा है
+reconcile.matchedBody	Ledger and your bank agree.	Ledger और आपका बैंक एक जैसा दिखा रहे हैं।
+reconcile.markChecked	Mark as checked	मिलाया हुआ दर्ज करें
+reconcile.difference	Difference of {amount}	{amount} का अंतर
+reconcile.bankHasLess	The account holds less than Ledger expects. Some spending is probably missing.	खाते में Ledger के अंदाज़े से कम है। शायद कुछ खर्च दर्ज नहीं हुए।
+reconcile.bankHasMore	The account holds more than Ledger expects. Some income is probably missing.	खाते में Ledger के अंदाज़े से ज़्यादा है। शायद कुछ आमदनी दर्ज नहीं हुई।
+reconcile.cardOwesMore	You owe more than Ledger expects. Some card spending or fees are probably missing.	बकाया Ledger के अंदाज़े से ज़्यादा है। शायद कुछ कार्ड खर्च या शुल्क दर्ज नहीं हुए।
+reconcile.cardOwesLess	You owe less than Ledger expects. A payment or refund is probably missing.	बकाया Ledger के अंदाज़े से कम है। शायद कोई भुगतान या रिफंड दर्ज नहीं हुआ।
+reconcile.optionReview	Find what is missing	क्या छूटा है ढूँढें
+reconcile.optionReviewBody	Look through this account's recent entries and add or fix what is wrong.	इस खाते की हाल की प्रविष्टियाँ देखें और जो गलत है उसे जोड़ें या ठीक करें।
+reconcile.reviewRecent	Review recent transactions	हाल के लेन-देन देखें
+reconcile.optionAdjust	Or book the difference	या अंतर दर्ज कर दें
+reconcile.optionAdjustBody	Creates one entry of {amount} labelled "Unmatched" so the balances agree.	{amount} की एक प्रविष्टि "Unmatched" नाम से बनेगी ताकि बैलेंस मिल जाए।
+reconcile.noCategory	No category	कोई श्रेणी नहीं
+reconcile.notCounted	Without a category it corrects the balance but is not counted as spending.	बिना श्रेणी के यह बैलेंस ठीक करेगा पर खर्च में नहीं गिना जाएगा।
+reconcile.countsAsSpending	In this category it will be counted as spending this month.	इस श्रेणी में यह इस महीने के खर्च में गिना जाएगा।
+reconcile.countsAsIncome	In this category it will be counted as income this month.	इस श्रेणी में यह इस महीने की आमदनी में गिना जाएगा।
+reconcile.createAdjustment	Create adjustment	समायोजन बनाएँ
+reconcile.adjusted	Balance adjusted	बैलेंस ठीक किया गया
+reconcile.recorded	Balance check recorded	बैलेंस मिलान दर्ज हुआ
+filter.type	Type	प्रकार
+filter.account	Account	खाता
+filter.category	Category	श्रेणी
+filter.method	Paid by	भुगतान का तरीका
+filter.source	Added by	कैसे जोड़ा
+filter.amount	Amount range	रकम की सीमा
+filter.min	At least	कम से कम
+filter.max	At most	ज़्यादा से ज़्यादा
+filter.dates	Dates	तारीखें
+filter.from	From {date}	{date} से
+filter.until	Until {date}	{date} तक
+filter.anyStart	Any start date	कोई भी शुरुआती तारीख
+filter.anyEnd	Any end date	कोई भी आख़िरी तारीख
+settings.title	Settings	सेटिंग
+settings.sectionMoney	Your money	आपका पैसा
+settings.sectionApp	App	ऐप
+settings.sectionDanger	Danger zone	सावधानी
+settings.categories	Categories	श्रेणियाँ
+settings.categoriesSub	Rename, recolour, add subcategories	नाम, रंग बदलें, उप-श्रेणियाँ जोड़ें
+settings.budgets	Budgets	बजट
+settings.budgetsSub	Monthly limits for groups of categories	श्रेणियों के समूहों की मासिक सीमा
+settings.recurring	Recurring	आवर्ती
+settings.recurringSub	Rent, SIPs, subscriptions and EMIs	किराया, SIP, सब्सक्रिप्शन और EMI
+settings.general	Currency, language and month	मुद्रा, भाषा और महीना
+settings.notifications	Notifications	सूचनाएँ
+settings.notificationsSub	Budget, bill and reminder alerts	बजट, बिल और रिमाइंडर की सूचना
+settings.security	App lock and privacy	ऐप लॉक और निजता
+settings.language	Language	भाषा
+settings.currency	Currency	मुद्रा
+settings.currencyNote	Changing the currency changes the symbol only. Amounts are not converted.	मुद्रा बदलने से सिर्फ़ चिह्न बदलता है। रकम बदली नहीं जाती।
+settings.numberFormat	Number format	अंकों का प्रारूप
+settings.monthStart	Month start	महीने की शुरुआत
+settings.monthStartLabel	Day the month starts	महीना किस दिन शुरू होता है
+settings.monthStartHint	1 for the calendar month, or your pay day (for example 30).	कैलेंडर महीने के लिए 1, या आपका वेतन का दिन (जैसे 30)।
+settings.theme	Theme	थीम
+settings.themeSystem	System	सिस्टम
+settings.themeLight	Light	हल्की
+settings.themeDark	Dark	गहरी
+settings.deleteAll	Delete all data	सारा डेटा हटाएँ
+settings.deleteAllSub	Erases everything on this phone and starts again	इस फ़ोन से सब कुछ मिटाकर नए सिरे से शुरू करें
+settings.deleteAllTitle	Delete all data?	सारा डेटा हटाएँ?
+settings.deleteAllBody	This erases every account, transaction, budget, goal and setting on this phone. Backups in your Google Drive are not touched.	इससे इस फ़ोन के सभी खाते, लेन-देन, बजट, लक्ष्य और सेटिंग मिट जाएँगे। आपके Google Drive के बैकअप वैसे ही रहेंगे।
+settings.deleteAllNext	Continue	आगे बढ़ें
+settings.deleteAllConfirmTitle	This cannot be undone	यह वापस नहीं हो सकता
+settings.deleteAllConfirmBody	Export or back up first if you might want this data again.	अगर यह डेटा फिर चाहिए हो सकता है तो पहले एक्सपोर्ट या बैकअप कर लें।
+settings.deleteAllConfirm	Delete everything	सब कुछ हटाएँ
+settings.privacyNote	Your data stays on this phone. No account, no ads, no tracking.	आपका डेटा इसी फ़ोन पर रहता है। कोई अकाउंट नहीं, कोई विज्ञापन नहीं, कोई ट्रैकिंग नहीं।
+lock.title	Ledger is locked	Ledger लॉक है
+lock.enterPin	Enter your PIN	अपना PIN डालें
+lock.wrongPin	That PIN is not right	यह PIN सही नहीं है
+lock.wait	Too many tries. Wait {seconds} seconds.	बहुत बार गलत। {seconds} सेकंड रुकें।
+lock.unlock	Unlock	खोलें
+lock.useBiometric	Use fingerprint or face	फ़िंगरप्रिंट या चेहरे से खोलें
+lock.usePin	Use PIN	PIN से खोलें
+lock.biometricPrompt	Unlock Ledger	Ledger खोलें
+lock.digitsEntered	{count} digits entered	{count} अंक डाले गए
+lock.choosePin	Choose a PIN	एक PIN चुनें
+lock.repeatPin	Type it once more	एक बार फिर डालें
+lock.pinHint	{min} to {max} digits	{min} से {max} अंक
+lock.mismatch	The two PINs did not match. Start again.	दोनों PIN एक जैसे नहीं थे। फिर से शुरू करें।
+lock.turnOn	Turn on app lock	ऐप लॉक चालू करें
+lock.biometricToggle	Unlock with fingerprint or face	फ़िंगरप्रिंट या चेहरे से खोलें
+lock.biometricUnavailable	No fingerprint or face is set up on this phone	इस फ़ोन पर फ़िंगरप्रिंट या चेहरा सेट नहीं है
+lock.isOn	App lock is on	ऐप लॉक चालू है
+lock.isOff	App lock is off	ऐप लॉक बंद है
+lock.explain	Ask for a PIN, fingerprint or face whenever Ledger is opened. The PIN is kept only on this phone. If you forget it, the only way back in is to clear the app's data and restore a backup.	Ledger खोलने पर PIN, फ़िंगरप्रिंट या चेहरा माँगा जाएगा। PIN सिर्फ़ इसी फ़ोन पर रहता है। भूल जाने पर ऐप का डेटा मिटाकर बैकअप से वापस लाना ही एक रास्ता है।
+lock.setUp	Set up app lock	ऐप लॉक लगाएँ
+lock.changePin	Change PIN	PIN बदलें
+lock.turnOff	Turn off app lock	ऐप लॉक बंद करें
+lock.turnOffTitle	Turn off app lock?	ऐप लॉक बंद करें?
+lock.turnOffBody	Anyone who can open your phone will be able to open Ledger.	जो भी आपका फ़ोन खोल सकता है वह Ledger भी खोल सकेगा।
+lock.screenSecure	Hide in recent apps	हाल के ऐप में छिपाएँ
+lock.screenSecureSub	Blanks the app in the recent-apps view and blocks screenshots	हाल के ऐप की सूची में ऐप खाली दिखेगा और स्क्रीनशॉट नहीं लिए जा सकेंगे
+onb.welcomeTitle	Know where your money goes	जानें आपका पैसा कहाँ जाता है
+onb.welcomeBody	A private ledger for your bank accounts, cash, wallets and credit cards.	आपके बैंक खातों, नकद, वॉलेट और क्रेडिट कार्ड के लिए एक निजी बही-खाता।
+onb.pointOffline	Works fully offline	पूरी तरह बिना इंटरनेट के चलता है
+onb.pointOfflineBody	Everything is stored on this phone.	सब कुछ इसी फ़ोन पर रहता है।
+onb.pointCards	Credit cards done right	क्रेडिट कार्ड का सही हिसाब
+onb.pointCardsBody	Card spending is counted once, when you spend, not again when you pay the bill.	कार्ड का खर्च एक ही बार गिना जाता है, खर्च करते समय, बिल भरते समय दोबारा नहीं।
+onb.pointPrivate	No account, no ads, no tracking	कोई अकाउंट नहीं, विज्ञापन नहीं, ट्रैकिंग नहीं
+onb.pointPrivateBody	Back up to your own Google Drive only if you want to.	चाहें तभी अपने Google Drive पर बैकअप लें।
+onb.start	Get started	शुरू करें
+onb.stepOf	Step {step} of {total}	{total} में से चरण {step}
+onb.skipHint	You can set this up later in Settings	इसे बाद में सेटिंग में कर सकते हैं
+onb.skipFinish	Skip and finish	छोड़कर पूरा करें
+onb.finish	Finish	पूरा करें
+onb.moneyTitle	Currency and numbers	मुद्रा और अंक
+onb.moneyBody	Choose how amounts should look.	रकम कैसी दिखे यह चुनें।
+onb.example	Example	उदाहरण
+onb.monthTitle	When does your month start?	आपका महीना कब शुरू होता है?
+onb.monthBody	Budgets and reports can follow the calendar month, or run from your pay day.	बजट और रिपोर्ट कैलेंडर महीने के हिसाब से या आपके वेतन के दिन से चल सकते हैं।
+onb.calendarMonth	1st (calendar month)	1 तारीख (कैलेंडर महीना)
+onb.dayN	Day {day}	{day} तारीख
+onb.otherDay	Another day	कोई और दिन
+onb.thisMonthRuns	This month runs	यह महीना चलता है
+onb.accountsTitle	Add your accounts	अपने खाते जोड़ें
+onb.accountsBody	Add the places your money lives: bank accounts, cash, wallets and credit cards. You can add more later.	जहाँ आपका पैसा रहता है वे जोड़ें: बैंक खाते, नकद, वॉलेट और क्रेडिट कार्ड। बाद में और जोड़ सकते हैं।
+onb.addThisAccount	Add this account	यह खाता जोड़ें
+onb.addAnother	Add another account	एक और खाता जोड़ें
+onb.budgetsTitle	Set starting budgets	शुरुआती बजट बनाएँ
+onb.budgetsBody	Enter roughly what you earn in a month and Ledger suggests limits you can change at any time.	लिखें कि महीने में लगभग कितना कमाते हैं, Ledger सीमाएँ सुझाएगा जिन्हें आप कभी भी बदल सकते हैं।
+onb.monthlyIncome	Monthly income ({symbol})	मासिक आमदनी ({symbol})
+onb.incomeHint	Only used to suggest limits. It is not saved as a transaction.	सिर्फ़ सीमा सुझाने के लिए। इसे लेन-देन के रूप में सेव नहीं किया जाता।
+onb.shareOfIncome	{percent}% of income	आमदनी का {percent}%
+onb.budgetsEditLater	You can rename groups, change limits and choose categories in Settings.	सेटिंग में समूहों के नाम, सीमा और श्रेणियाँ बदल सकते हैं।
+onb.useTheseBudgets	Use these budgets	ये बजट इस्तेमाल करें
+onb.lockTitle	Lock the app	ऐप लॉक करें
+onb.lockBody	Keep your finances private with a PIN, fingerprint or face.	PIN, फ़िंगरप्रिंट या चेहरे से अपने पैसों की जानकारी निजी रखें।
+onb.backupTitle	Back up to Google Drive	Google Drive पर बैकअप
+onb.backupBody	Optional. Backups go to a private app folder in your own Google Drive.	वैकल्पिक। बैकअप आपके अपने Google Drive के निजी ऐप फ़ोल्डर में जाते हैं।
+backup.later	You can connect Google Drive at any time in Settings.	Google Drive कभी भी सेटिंग से जोड़ सकते हैं।
+category.add	Add category	श्रेणी जोड़ें
+category.addSub	Add a subcategory to {name}	{name} में उप-श्रेणी जोड़ें
+category.newSub	New subcategory	नई उप-श्रेणी
+category.edit	Edit category	श्रेणी बदलें
+category.editHint	Opens the category to edit	बदलने के लिए श्रेणी खोलें
+category.kind	Kind of category	श्रेणी का प्रकार
+category.expense	Spending	खर्च
+category.income	Income	आमदनी
+category.name	Name	नाम
+category.removeTitle	Remove "{name}"?	"{name}" हटाएँ?
+category.removeBody	A category that has been used is archived, so past months keep their labels. An unused one is deleted.	इस्तेमाल हुई श्रेणी संग्रह में जाती है ताकि पिछले महीनों के नाम बने रहें। बिना इस्तेमाल की श्रेणी हट जाती है।
+category.archived	Category archived	श्रेणी संग्रह में रखी गई
+category.deleted	Category deleted	श्रेणी हटाई गई
+category.showArchived	Show {count} archived	{count} संग्रहित दिखाएँ
+category.hideArchived	Hide archived	संग्रहित छिपाएँ
+notify.channel	Budget, bill and reminder alerts	बजट, बिल और रिमाइंडर की सूचना
+notify.billSoonTitle	{name} bill is due in 3 days	{name} का बिल 3 दिन में देय है
+notify.billTodayTitle	{name} bill is due today	{name} का बिल आज देय है
+notify.billBody	{amount} is still to pay.	{amount} चुकाना बाकी है।
+notify.recurringTitle	{name} is due today	{name} आज देय है
+notify.recurringBody	{amount}. Open Ledger to record it.	{amount}। दर्ज करने के लिए Ledger खोलें।
+notify.recurringAutoBody	{amount} will be added when you open Ledger.	Ledger खोलने पर {amount} जोड़ दिए जाएँगे।
+notify.dailyTitle	Anything to log today?	आज कुछ दर्ज करना है?
+notify.dailyBody	Add today's expenses while you still remember them.	आज के खर्च याद रहते जोड़ लें।
+notify.exportTitle	Time to export your data	अपना डेटा एक्सपोर्ट करने का समय
+notify.exportBody	Drive backup is off. Export a copy so a lost phone does not lose your records.	Drive बैकअप बंद है। एक कॉपी एक्सपोर्ट कर लें ताकि फ़ोन खोने पर रिकॉर्ड न खोएँ।
+notify.budgetWarnTitle	{name} budget is {percent}% used	{name} बजट का {percent}% इस्तेमाल हो गया
+notify.budgetWarnBody	{spent} of {limit} spent.	{limit} में से {spent} खर्च।
+notify.budgetOverTitle	{name} budget exceeded	{name} बजट पार हो गया
+notify.budgetFurtherTitle	{name} is now well over budget	{name} अब बजट से काफ़ी ऊपर है
+notify.budgetOverBody	{over} over the {limit} limit.	{limit} की सीमा से {over} ज़्यादा।
+notify.blockedTitle	Notifications are off for Ledger	Ledger की सूचनाएँ बंद हैं
+notify.blockedBody	Allow notifications in system settings to get these alerts.	ये सूचनाएँ पाने के लिए सिस्टम सेटिंग में अनुमति दें।
+notify.openSettings	Open	खोलें
+notify.budgets	Budget alerts	बजट की सूचना
+notify.budgetsSub	At {percent}% of a budget, and when it is exceeded	बजट के {percent}% पर और पार होने पर
+notify.bills	Card bill reminders	कार्ड बिल रिमाइंडर
+notify.billsSub	3 days before and on the due day, while unpaid	देय तारीख से 3 दिन पहले और उसी दिन, जब तक बिल बाकी है
+notify.recurring	Recurring items	आवर्ती चीज़ें
+notify.recurringSub	On the day rent, SIPs and subscriptions are due	जिस दिन किराया, SIP और सब्सक्रिप्शन देय हों
+notify.daily	End-of-day reminder	दिन के अंत का रिमाइंडर
+notify.dailySub	A nudge to log the day's expenses	दिन के खर्च दर्ज करने की याद
+notify.export	Monthly export reminder	मासिक एक्सपोर्ट रिमाइंडर
+notify.exportSub	Only while Google Drive backup is off	सिर्फ़ तब जब Google Drive बैकअप बंद हो
+notify.threshold	Warn when a budget reaches	बजट इतना होने पर चेतावनी
+notify.thresholdNote	Also used for the "near limit" label on budgets.	बजट पर "सीमा के पास" लेबल भी इसी से तय होता है।
+notify.dailyTime	Reminder time	रिमाइंडर का समय
+notify.localNote	All notifications are created on this phone. Nothing is sent to a server.	सभी सूचनाएँ इसी फ़ोन पर बनती हैं। कुछ भी सर्वर पर नहीं भेजा जाता।
+upcoming.title	Coming up	आने वाले
+upcoming.overdueBy	Overdue by {days} days	{days} दिन देर
+upcoming.tomorrow	Tomorrow	कल (आने वाला)
+upcoming.inDays	in {days} days	{days} दिन में
+upcoming.hint	Opens actions for this item	इसके विकल्प खुलेंगे
+upcoming.auto	Added automatically	अपने आप जुड़ेगा
+upcoming.recurringPrompt	{amount}. Record it now, or skip this one?	{amount}। अभी दर्ज करें, या इस बार छोड़ दें?
+upcoming.recordNow	Record now	अभी दर्ज करें
+upcoming.skipOnce	Skip this one	इस बार छोड़ें
+banner.budgetOver	{name} is over budget	{name} बजट से ऊपर है
+banner.budgetOverBody	{amount} more than planned.	योजना से {amount} ज़्यादा।
+banner.budgetNear	{name} is at {percent}%	{name} {percent}% पर है
+banner.budgetNearBody	{amount} left for the rest of the month.	महीने के बाकी दिनों के लिए {amount} बचे हैं।
+banner.billOverdue	{name} bill is overdue	{name} का बिल देर से है
+banner.billToday	{name} bill is due today	{name} का बिल आज देय है
+banner.billSoon	{name} bill is due in {days} days	{name} का बिल {days} दिन में देय है
+budget.add	Add budget	बजट जोड़ें
+budget.edit	Edit budget	बजट बदलें
+budget.editHint	Opens this budget to edit	बदलने के लिए बजट खोलें
+budget.delete	Delete budget	बजट हटाएँ
+budget.deleteTitle	Delete "{name}"?	"{name}" हटाएँ?
+budget.deleteBody	It is removed from this month and will not be carried into later months. Earlier months keep theirs.	यह इस महीने से हट जाएगा और आगे के महीनों में नहीं आएगा। पिछले महीनों में बना रहेगा।
+budget.emptyTitle	No budgets for this month	इस महीने कोई बजट नहीं
+budget.emptyBody	A budget is a monthly limit for a group of categories, such as Food covering dining and groceries.	बजट श्रेणियों के समूह की मासिक सीमा है, जैसे खाना जिसमें बाहर खाना और किराना दोनों आते हैं।
+budget.copyFrom	Copy from {month}	{month} से कॉपी करें
+budget.copied	{count} budgets copied	{count} बजट कॉपी हुए
+budget.nothingToCopy	Nothing new to copy	कॉपी करने को कुछ नया नहीं
+budget.totalLine	Total budget {limit}	कुल बजट {limit}
+budget.name	Name	नाम
+budget.namePlaceholder	For example: Food	जैसे: खाना
+budget.limit	Limit for {month}	{month} की सीमा
+budget.categories	Categories covered	शामिल श्रेणियाँ
+budget.inAnother	already in another budget	पहले से दूसरे बजट में है
+budget.overlapNote	A category here is also in another budget, so its spending counts towards both.	यहाँ की एक श्रेणी दूसरे बजट में भी है, इसलिए उसका खर्च दोनों में गिना जाएगा।
+budget.recurring	Repeat every month	हर महीने दोहराएँ
+budget.recurringSub	Carried into each new month automatically	हर नए महीने में अपने आप आ जाएगा
+recurring.add	Add recurring item	आवर्ती चीज़ जोड़ें
+recurring.edit	Edit recurring item	आवर्ती चीज़ बदलें
+recurring.editHint	Opens this item to edit	बदलने के लिए खोलें
+recurring.emptyTitle	Nothing recurring yet	अभी कुछ आवर्ती नहीं
+recurring.emptyBody	Add rent, SIPs, subscriptions and EMIs once. Ledger reminds you, or adds them for you.	किराया, SIP, सब्सक्रिप्शन और EMI एक बार जोड़ें। Ledger याद दिलाएगा, या खुद जोड़ देगा।
+recurring.monthlyTotal	Committed each month (approx.)	हर महीने तय खर्च (लगभग)
+recurring.daily	Daily	रोज़
+recurring.weekly	Weekly	हर हफ़्ते
+recurring.monthly	Monthly	हर महीने
+recurring.quarterly	Every 3 months	हर 3 महीने
+recurring.yearly	Yearly	हर साल
+recurring.nextOn	next {date}	अगला {date}
+recurring.endsOn	ends {date}	{date} को खत्म
+recurring.noEnd	No end date	कोई आख़िरी तारीख नहीं
+recurring.name	Name	नाम
+recurring.namePlaceholder	For example: Rent	जैसे: किराया
+recurring.amount	Amount	रकम
+recurring.frequency	Repeats	कितनी बार
+recurring.mode	What happens when it is due	देय होने पर क्या हो
+recurring.modeRemind	Remind me	याद दिलाएँ
+recurring.modeAuto	Add automatically	अपने आप जोड़ें
+recurring.remindExplain	It appears under Coming up and you choose to record or skip it.	यह "आने वाले" में दिखेगा और आप दर्ज करना या छोड़ना चुनेंगे।
+recurring.autoExplain	The entry is added on its date, the next time Ledger is opened.	तारीख आने पर, अगली बार Ledger खोलते ही प्रविष्टि जुड़ जाएगी।
+recurring.paused	Paused	रुका हुआ
+recurring.pause	Pause {name}	{name} रोकें
+recurring.resume	Resume {name}	{name} फिर शुरू करें
+recurring.deleteTitle	Delete "{name}"?	"{name}" हटाएँ?
+recurring.deleteBody	Entries it already created are kept.	इससे पहले बनी प्रविष्टियाँ बनी रहेंगी।

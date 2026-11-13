@@ -16,6 +16,7 @@
     "test:coverage": "jest --coverage",
     "check": "npm run lint && npm run typecheck && npm run test",
     "db:generate": "drizzle-kit generate",
+    "i18n": "python3 scripts/i18n-build.py",
     "seed:demo": "tsx scripts/seed-demo.ts"
   },
   "dependencies": {

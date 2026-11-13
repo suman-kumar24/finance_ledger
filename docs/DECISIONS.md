@@ -62,3 +62,19 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | Strings | Flat key tables `en.ts` and `hi.ts`; the Hindi table's type requires every English key; a test checks placeholders match and every key used by a screen exists | Missing translations fail the build. |
 | Accessibility | Every control has a role and label, touch targets are at least 48dp, status pills always carry an icon and a word, amounts use `adjustsFontSizeToFit` with a capped font multiplier | Brief section 5. |
 | Screen tests | Screens are rendered in Jest with React Native Testing Library against real in-memory SQLite; only native modules are mocked | Catches wiring mistakes that unit tests of pure functions cannot. |
+
+## Phase 4: budgets, recurring rules, notifications
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Recurring budgets | When a new period has no budgets, recurring ones are copied from the latest earlier period. Deleting a budget stops its series recurring | Lets each month's limit be edited without changing history, and a deleted budget stays deleted. |
+| "Copy last month's budgets" | Copies every budget (recurring or not) from the latest earlier period that has any, skipping series already present | Safe to press twice. |
+| Overlapping budgets | Allowed, with a note in the editor: the category's spending counts towards both | Some people want "Food" and "Eating out" as separate views. |
+| Auto-create rules | Entries are created when the app is next opened (or returns to the foreground), one per missed occurrence, dated on the due date | There is no server and no always-running background process; the dates stay correct. |
+| Remind-only rules | Stay due under "Coming up" until the user records or skips them | Nothing is saved without the user. |
+| Rule that cannot be saved | Paused rather than crashing start-up (for example, its account was deleted) | Fail safe. |
+| Month-end rules | The day of month is remembered (`anchorDay`), so a rule on the 31st goes 31 Jan, 28 Feb, 31 Mar | Avoids drifting to the 28th forever. |
+| Time-based notifications | Planned by a pure function and rescheduled from scratch whenever data changes or the app opens: bill due in 3 days and on the due day (09:00) while unpaid, each rule's next date, the daily reminder, and the monthly export reminder | Local-only; paying a bill removes its reminders automatically. |
+| Budget alerts | Fired immediately when a saved entry crosses a level in the current period; recorded in `alert_log` so each fires once per budget per month | Brief section 8. Backdated entries in past months stay quiet. |
+| Notification permission | Asked only when the user turns a notification switch on (or finishes onboarding with alerts wanted), never at first launch | Fewer surprise prompts. |
+| "Coming up" | Card bills with an unpaid balance, recurring occurrences and scheduled entries in the next 14 days; overdue items stay until dealt with | Brief section 5.2. |

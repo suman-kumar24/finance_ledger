@@ -234,3 +234,90 @@ describe('Account edit, onboarding and settings', () => {
     expect(screen.getByText('Delete all data')).toBeTruthy();
   });
 });
+
+describe('Phase 4 screens', () => {
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const Budgets = require('@/app/settings/budgets').default;
+  const Recurring = require('@/app/settings/recurring').default;
+  const NotificationSettings = require('@/app/settings/notifications').default;
+  const { createRecurringRule } = require('@/data/recurring');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+
+  it('shows budget banners and coming-up items on Overview', async () => {
+    const { bank, card } = seedBasics(db);
+    const food = listCategories(db).find((c) => c.systemKey === 'food')!;
+    createBudget(db, {
+      name: 'Food',
+      period: currentPeriodKey(getSettings(db), today),
+      limit: 1_000_00,
+      recurring: true,
+      categoryIds: [food.id],
+    });
+    createTransaction(db, {
+      type: 'expense',
+      amount: 900_00,
+      day: today,
+      accountId: bank.id,
+      categoryId: food.id,
+    });
+    createRecurringRule(db, {
+      name: 'Rent',
+      type: 'expense',
+      amount: 15_000_00,
+      accountId: bank.id,
+      toAccountId: null,
+      categoryId: null,
+      method: 'upi',
+      frequency: 'monthly',
+      interval: 1,
+      nextDate: today,
+      endDate: null,
+      mode: 'remind',
+      note: null,
+    });
+    void card;
+    await renderScreen(<Overview />);
+    expect(screen.getByText('Food is at 90%')).toBeTruthy();
+    expect(screen.getByText('Coming up')).toBeTruthy();
+    expect(screen.getByText('Rent')).toBeTruthy();
+  });
+
+  it('adds a budget', async () => {
+    seedBasics(db);
+    await renderScreen(<Budgets />);
+    expect(screen.getByText('No budgets for this month')).toBeTruthy();
+    await fireEvent.press(screen.getAllByLabelText('Add budget')[0]!);
+    await fireEvent.changeText(screen.getByLabelText('Name'), 'Food');
+    await fireEvent.changeText(screen.getByLabelText(/^Limit for/), '8000');
+    await fireEvent.press(screen.getByLabelText('Groceries'));
+    await fireEvent.press(screen.getByLabelText('Save'));
+    const { listBudgets } = jest.requireActual('@/data/budgets');
+    expect(listBudgets(db, currentPeriodKey(getSettings(db), today))).toMatchObject([
+      { name: 'Food', limit: 8_000_00, recurring: true },
+    ]);
+  });
+
+  it('renders recurring rules and notification settings', async () => {
+    const { bank } = seedBasics(db);
+    createRecurringRule(db, {
+      name: 'Music',
+      type: 'expense',
+      amount: 119_00,
+      accountId: bank.id,
+      toAccountId: null,
+      categoryId: null,
+      method: 'card',
+      frequency: 'monthly',
+      interval: 1,
+      nextDate: today,
+      endDate: null,
+      mode: 'auto',
+      note: null,
+    });
+    await renderScreen(<Recurring />);
+    expect(screen.getByText('Music')).toBeTruthy();
+    expect(screen.getByText('Add automatically')).toBeTruthy();
+    await renderScreen(<NotificationSettings />);
+    expect(screen.getByText('Card bill reminders')).toBeTruthy();
+  });
+});

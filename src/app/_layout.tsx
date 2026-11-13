@@ -10,6 +10,7 @@ import { runMaintenance } from '@/data/maintenance';
 import { getDb, initDatabase } from '@/db/client';
 import { dayFromDate } from '@/domain/dates';
 import { useSettings } from '@/hooks/useSettings';
+import { syncNotifications } from '@/notify';
 import { LockScreen } from '@/security/LockScreen';
 import { useAppLock, useScreenSecurity } from '@/security/useAppLock';
 import { useUi } from '@/state/ui';
@@ -28,7 +29,10 @@ function AppShell() {
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') runMaintenance(getDb(), dayFromDate(new Date()));
+      if (state === 'active') {
+        runMaintenance(getDb(), dayFromDate(new Date()));
+        void syncNotifications(getDb());
+      }
     });
     return () => sub.remove();
   }, []);
@@ -71,6 +75,7 @@ export default function RootLayout() {
     initDatabase()
       .then((db) => {
         runMaintenance(db, dayFromDate(new Date()));
+        void syncNotifications(db);
         setReady(true);
       })
       .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))
