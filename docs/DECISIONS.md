@@ -78,3 +78,14 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | Budget alerts | Fired immediately when a saved entry crosses a level in the current period; recorded in `alert_log` so each fires once per budget per month | Brief section 8. Backdated entries in past months stay quiet. |
 | Notification permission | Asked only when the user turns a notification switch on (or finishes onboarding with alerts wanted), never at first launch | Fewer surprise prompts. |
 | "Coming up" | Card bills with an unpaid balance, recurring occurrences and scheduled entries in the next 14 days; overdue items stay until dealt with | Brief section 5.2. |
+
+## Phase 5: plans and reports
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Goal progress | Sum of the goal's contributions (which can be negative for withdrawals), not the linked account's balance | One savings account can hold several goals. |
+| Linked savings account | A contribution can also record the transfer between a chosen account and the goal's savings account | Keeps balances right and counts it as Saved/Invested, never as spending. |
+| Monthly amount needed | `ceil(remaining / monthsLeft)`, where months left counts the current month and is at least 1 | Rounding up means the plan never falls short. |
+| Planned purchase bought | Creates an `expense` with the purchase name as payee and links it; deleting the plan later keeps the expense | Brief section 4. |
+| Reports | Trend over the last 6 or 12 periods, breakdown by top-level category, and change against the previous period sorted by biggest mover | Brief section 5.7. |
+| Charts | Hand-built with react-native-svg. Each chart is one accessible element with a spoken summary, and the same numbers are listed as text underneath | No chart library; nothing relies on colour. |

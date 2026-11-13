@@ -488,3 +488,85 @@ recurring.pause	Pause {name}	{name} रोकें
 recurring.resume	Resume {name}	{name} फिर शुरू करें
 recurring.deleteTitle	Delete "{name}"?	"{name}" हटाएँ?
 recurring.deleteBody	Entries it already created are kept.	इससे पहले बनी प्रविष्टियाँ बनी रहेंगी।
+goal.title	Goals	लक्ष्य
+goal.add	Add goal	लक्ष्य जोड़ें
+goal.edit	Edit goal	लक्ष्य बदलें
+goal.delete	Delete goal	लक्ष्य हटाएँ
+goal.deleteTitle	Delete "{name}"?	"{name}" हटाएँ?
+goal.deleteBody	The goal and its contribution history are removed. Transfers already recorded stay in your accounts.	लक्ष्य और उसका योगदान इतिहास हट जाएगा। पहले दर्ज ट्रांसफ़र आपके खातों में बने रहेंगे।
+goal.emptyTitle	No goals yet	अभी कोई लक्ष्य नहीं
+goal.emptyBody	Save for something specific and see how much to put aside each month.	किसी ख़ास चीज़ के लिए बचत करें और देखें हर महीने कितना अलग रखना है।
+goal.reached	Goal reached	लक्ष्य पूरा हुआ
+goal.pastDue	Date passed, {amount} to go	तारीख निकल गई, {amount} बाकी
+goal.perMonth	{amount} a month needed	हर महीने {amount} चाहिए
+goal.noDate	No target date set	कोई लक्ष्य तारीख नहीं
+goal.by	by {date}	{date} तक
+goal.progressA11y	{saved} of {target} saved, {percent} percent	{target} में से {saved} जमा, {percent} प्रतिशत
+goal.openHint	Opens the goal	लक्ष्य खुलेगा
+goal.remaining	{amount} to go	{amount} बाकी
+goal.perMonthA11y	{amount} needed each month for {months} months	{months} महीनों तक हर महीने {amount} चाहिए
+goal.perMonthLine	needed each month for {months} months	{months} महीनों तक हर महीने चाहिए
+goal.pastDueLine	still to save; the target date has passed	अभी बचाना बाकी; लक्ष्य तारीख निकल चुकी है
+goal.linkedTo	Kept in {name}	{name} में रखा है
+goal.linkAccount	Link a savings account	बचत खाता जोड़ें
+goal.pickDate	Set a target date	लक्ष्य तारीख चुनें
+goal.name	Goal name	लक्ष्य का नाम
+goal.namePlaceholder	For example: Emergency fund	जैसे: आपातकालीन निधि
+goal.target	Target amount	लक्ष्य रकम
+goal.saved	Goal saved	लक्ष्य सेव हो गया
+goal.addMoney	Add money	पैसा जोड़ें
+goal.withdraw	Take out	निकालें
+goal.fromAccount	From {name}	{name} से
+goal.toAccount	To {name}	{name} में
+goal.noTransfer	No transfer	कोई ट्रांसफ़र नहीं
+goal.transferExplain	Also records a transfer with {name}, so both balances stay right.	{name} के साथ ट्रांसफ़र भी दर्ज होगा, ताकि दोनों बैलेंस सही रहें।
+goal.noTransferExplain	Only the goal's progress changes. Choose an account to record the transfer as well.	सिर्फ़ लक्ष्य की प्रगति बदलेगी। ट्रांसफ़र भी दर्ज करने के लिए खाता चुनें।
+goal.contributionSaved	Goal updated	लक्ष्य अपडेट हुआ
+goal.history	History	इतिहास
+goal.removeContribution	Remove the entry of {amount}	{amount} की प्रविष्टि हटाएँ
+purchase.title	Planned purchases	सोची हुई खरीदारी
+purchase.add	Add purchase	खरीदारी जोड़ें
+purchase.edit	Planned purchase	सोची हुई खरीदारी
+purchase.emptyTitle	Nothing planned	कुछ सोचा नहीं गया
+purchase.emptyBody	Note the bigger things you are thinking of buying and how you will pay for them.	जो बड़ी चीज़ें खरीदने की सोच रहे हैं और उनके पैसे कहाँ से आएँगे, यहाँ लिखें।
+purchase.thinking	Thinking	सोच रहे हैं
+purchase.saving	Saving for it	बचत कर रहे हैं
+purchase.bought	Bought	खरीद लिया
+purchase.high	High priority	ज़्यादा ज़रूरी
+purchase.medium	Medium priority	मध्यम ज़रूरी
+purchase.low	Low priority	कम ज़रूरी
+purchase.totalPlanned	{amount} planned in total	कुल {amount} की योजना
+purchase.name	What is it?	क्या खरीदना है?
+purchase.namePlaceholder	For example: Washing machine	जैसे: वॉशिंग मशीन
+purchase.price	Estimated price	अनुमानित कीमत
+purchase.priority	Priority	प्राथमिकता
+purchase.status	Status	स्थिति
+purchase.funding	How will you pay for it?	पैसे कहाँ से आएँगे?
+purchase.fundingPlaceholder	For example: bonus in March, or 5,000 a month	जैसे: मार्च का बोनस, या हर महीने 5,000
+purchase.saved	Purchase saved	खरीदारी सेव हो गई
+purchase.buyTitle	Bought it?	खरीद लिया?
+purchase.buyBody	Marking it as bought adds an expense to your ledger.	खरीदा हुआ दर्ज करने पर आपके खाते में एक खर्च जुड़ेगा।
+purchase.paid	Amount paid	चुकाई गई रकम
+purchase.markBought	Mark as bought	खरीदा हुआ दर्ज करें
+purchase.boughtSaved	Added to your ledger	आपके खाते में जोड़ दिया गया
+purchase.deleteTitle	Delete "{name}"?	"{name}" हटाएँ?
+purchase.deleteBody	The plan is removed. If it was bought, the expense stays in your ledger.	योजना हट जाएगी। अगर खरीदा जा चुका है तो खर्च आपके खाते में बना रहेगा।
+plans.commitments	Recurring commitments	आवर्ती देनदारियाँ
+plans.commitmentsLine	{count} items, about {amount} a month	{count} चीज़ें, महीने में लगभग {amount}
+reports.trend	Monthly trend	मासिक रुझान
+reports.range	Number of months	कितने महीने
+reports.months	{count} months	{count} महीने
+reports.spending	Spending	खर्च
+reports.income	Income	आमदनी
+reports.saved	Saved	बचत
+reports.trendA11y	Chart of the last {months} months. In {month}: spending {spending}, income {income}, saved {saved}.	पिछले {months} महीनों का चार्ट। {month} में: खर्च {spending}, आमदनी {income}, बचत {saved}।
+reports.rowA11y	{month}: spending {spending}, income {income}, saved {saved}	{month}: खर्च {spending}, आमदनी {income}, बचत {saved}
+reports.emptyTitle	Not enough data yet	अभी पर्याप्त डेटा नहीं
+reports.emptyBody	Trends appear once you have recorded some income or spending.	कुछ आमदनी या खर्च दर्ज करने के बाद रुझान दिखेंगे।
+reports.byCategory	Spending by category	श्रेणी के हिसाब से खर्च
+reports.noSpending	No spending in this month	इस महीने कोई खर्च नहीं
+reports.change	Change since {month}	{month} से बदलाव
+reports.up	up	बढ़ा
+reports.down	down	घटा
+reports.same	no change	कोई बदलाव नहीं
+reports.changeA11y	{name}: {previous} before, {current} now, {direction} by {amount}	{name}: पहले {previous}, अब {current}, {amount} {direction}

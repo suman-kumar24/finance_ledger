@@ -19,9 +19,19 @@ import {
   periodForDay,
   periodFromKey,
   periodProgress,
+  recentPeriodKeys,
+  shiftPeriodKey,
   type Period,
   type PeriodProgress,
 } from '@/domain/months';
+import {
+  categoryBreakdown,
+  categoryChanges,
+  monthlyTrend,
+  type BreakdownRow,
+  type ChangeRow,
+  type TrendPoint,
+} from '@/domain/reports';
 import { spendingByTopCategory, summarize, type PeriodSummary } from '@/domain/spending';
 import type { Account, Category } from '@/domain/types';
 
@@ -121,5 +131,50 @@ export function loadAccountsView(db: Db, today: Day, includeArchived = false): A
     balances,
     totals: netWorth(all, balances),
     cards,
+  };
+}
+
+export interface ReportsView {
+  trend: TrendPoint[];
+  selected: Period;
+  summary: PeriodSummary;
+  breakdown: BreakdownRow[];
+  changes: ChangeRow[];
+  previousKey: string;
+  lookups: Lookups;
+}
+
+/** Trend for the last `months` periods plus a breakdown of the selected one. */
+export function loadReports(
+  db: Db,
+  settings: Pick<Settings, 'monthStartDay'>,
+  today: Day,
+  months: number,
+  selectedKey: string,
+): ReportsView {
+  const lookups = loadLookups(db);
+  const context = { accounts: lookups.accountById, categories: lookups.categoryById };
+  const currentKey = currentPeriodKey(settings, today);
+  const keys = recentPeriodKeys(currentKey, months);
+  const previousKey = shiftPeriodKey(selectedKey, -1);
+  const selected = periodFromKey(selectedKey, settings.monthStartDay);
+  const previous = periodFromKey(previousKey, settings.monthStartDay);
+  const firstKey = [keys[0] ?? currentKey, previousKey].sort()[0] ?? previousKey;
+  const lastKey = [currentKey, selectedKey].sort()[1] ?? currentKey;
+  const entries = listEntries(
+    db,
+    periodFromKey(firstKey, settings.monthStartDay).start,
+    periodFromKey(lastKey, settings.monthStartDay).end,
+  );
+  const summary = summarize(entries, context, { start: selected.start, end: selected.end });
+  const before = summarize(entries, context, { start: previous.start, end: previous.end });
+  return {
+    trend: monthlyTrend(entries, context, keys, settings.monthStartDay),
+    selected,
+    summary,
+    breakdown: categoryBreakdown(summary, lookups.categoryById),
+    changes: categoryChanges(summary, before, lookups.categoryById),
+    previousKey,
+    lookups,
   };
 }

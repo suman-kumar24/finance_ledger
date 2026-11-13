@@ -321,3 +321,93 @@ describe('Phase 4 screens', () => {
     expect(screen.getByText('Card bill reminders')).toBeTruthy();
   });
 });
+
+describe('Phase 5 screens', () => {
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const Plans = require('@/app/(tabs)/plans').default;
+  const Reports = require('@/app/(tabs)/reports').default;
+  const GoalScreen = require('@/app/goal').default;
+  const PurchaseScreen = require('@/app/purchase').default;
+  const plans = require('@/data/plans');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+
+  it('shows goals with the monthly amount needed, and planned purchases', async () => {
+    seedBasics(db);
+    const goal = plans.createGoal(db, {
+      name: 'Emergency fund',
+      targetAmount: 1_20_000_00,
+      targetDate: null,
+      accountId: null,
+      color: '#0F7B6C',
+      icon: 'target',
+    });
+    plans.addContribution(db, { goalId: goal.id, amount: 30_000_00, day: today }, today);
+    plans.createPurchase(db, {
+      name: 'Bicycle',
+      estimatedPrice: 18_000_00,
+      priority: 'high',
+      fundingNotes: null,
+    });
+    await renderScreen(<Plans />);
+    expect(screen.getByText('Emergency fund')).toBeTruthy();
+    expect(screen.getByText('25%')).toBeTruthy();
+    expect(screen.getByText('Bicycle')).toBeTruthy();
+    expect(screen.getByText('Thinking')).toBeTruthy();
+  });
+
+  it('creates a goal', async () => {
+    seedBasics(db);
+    await renderScreen(<GoalScreen />);
+    await fireEvent.changeText(screen.getByLabelText('Goal name'), 'New phone');
+    await fireEvent.changeText(screen.getByLabelText('Target amount'), '40000');
+    await fireEvent.press(screen.getByLabelText('Save'));
+    expect(plans.listGoals(db)).toMatchObject([{ name: 'New phone', targetAmount: 40_000_00 }]);
+  });
+
+  it('buys a planned purchase into the ledger', async () => {
+    const { bank } = seedBasics(db);
+    const p = plans.createPurchase(db, {
+      name: 'Bicycle',
+      estimatedPrice: 18_000_00,
+      priority: 'high',
+      fundingNotes: null,
+    });
+    jest.mocked(useLocalSearchParams).mockReturnValue({ id: p.id });
+    await renderScreen(<PurchaseScreen />);
+    await fireEvent.press(screen.getByLabelText('Account: None'));
+    await fireEvent.press(screen.getByLabelText('Everyday Bank'));
+    await fireEvent.press(screen.getByLabelText('Mark as bought'));
+    expect(listTransactions(db)[0]).toMatchObject({
+      type: 'expense',
+      amount: 18_000_00,
+      accountId: bank.id,
+      payee: 'Bicycle',
+    });
+    expect(plans.getPurchase(db, p.id).status).toBe('bought');
+  });
+
+  it('renders reports with a described chart and month-over-month change', async () => {
+    const { bank } = seedBasics(db);
+    const food = listCategories(db).find((c) => c.systemKey === 'food')!;
+    createTransaction(db, {
+      type: 'expense',
+      amount: 2_500_00,
+      day: today,
+      accountId: bank.id,
+      categoryId: food.id,
+    });
+    await renderScreen(<Reports />);
+    expect(screen.getByLabelText(/^Chart of the last 6 months/)).toBeTruthy();
+    expect(screen.getByText('Spending by category')).toBeTruthy();
+    expect(screen.getAllByText('Food & Dining').length).toBeGreaterThan(0);
+    expect(screen.getByText('up')).toBeTruthy();
+  });
+
+  it('shows empty states', async () => {
+    seedBasics(db);
+    await renderScreen(<Plans />);
+    expect(screen.getByText('No goals yet')).toBeTruthy();
+    await renderScreen(<Reports />);
+    expect(screen.getByText('Not enough data yet')).toBeTruthy();
+  });
+});
