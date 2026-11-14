@@ -1,0 +1,38 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "apk": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleFullRelease"
+      },
+      "env": {
+        "LEDGER_PACKAGE_ID": "com.example.ledger"
+      }
+    },
+    "apk-play": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assemblePlayRelease"
+      },
+      "env": {
+        "LEDGER_PACKAGE_ID": "com.example.ledger"
+      }
+    },
+    "aab-play": {
+      "distribution": "store",
+      "android": {
+        "buildType": "app-bundle",
+        "gradleCommand": ":app:bundlePlayRelease"
+      },
+      "env": {
+        "LEDGER_PACKAGE_ID": "com.example.ledger"
+      }
+    }
+  }
+}

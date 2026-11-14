@@ -92,6 +92,28 @@ Outputs: `android/app/build/outputs/apk/full/release/` and `android/app/build/ou
 
 See `docs/PLAY_STORE.md` for the SMS declaration and Data safety answers, and `docs/PRIVACY_POLICY.md`.
 
+## Build an APK in Expo's cloud (no Android Studio needed)
+
+Needs a free Expo account. `eas.json` defines three profiles:
+
+| Command | Output | Use |
+| --- | --- | --- |
+| `npm run build:apk` | APK, `full` flavour (with SMS import) | Sharing directly with friends |
+| `npm run build:apk:play` | APK, `play` flavour (no SMS permission) | Sharing directly, without SMS |
+| `npm run build:aab` | AAB, `play` flavour | Google Play upload |
+
+```bash
+npx eas-cli@latest login
+npx eas-cli@latest init           # once: links the project to your Expo account
+npm run build:apk
+```
+
+When the build finishes, EAS prints a download link for the APK. On the first build EAS offers to generate and store an Android signing key for you; accept, and later builds reuse it so updates install over older versions.
+
+Before building, set your package id in `eas.json` (the `LEDGER_PACKAGE_ID` value, in each profile) instead of `com.example.ledger`. To enable Google Drive backup, add `"GOOGLE_WEB_CLIENT_ID": "<your web client id>"` next to it (a web client ID is not a secret). The Android OAuth client must use the SHA-1 of the EAS signing key, shown by `npx eas-cli credentials`.
+
+Friends install the APK by opening the link or file on their phone and allowing "install unknown apps" when asked.
+
 ## Project layout
 
 | Path | What |

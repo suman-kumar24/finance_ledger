@@ -17,7 +17,10 @@
     "check": "npm run lint && npm run typecheck && npm run test",
     "db:generate": "drizzle-kit generate",
     "i18n": "python3 scripts/i18n-build.py",
-    "seed:demo": "tsx scripts/seed-demo.ts"
+    "seed:demo": "tsx scripts/seed-demo.ts",
+    "build:apk": "eas build --platform android --profile apk",
+    "build:apk:play": "eas build --platform android --profile apk-play",
+    "build:aab": "eas build --platform android --profile aab-play"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
