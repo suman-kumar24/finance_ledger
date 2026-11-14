@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "about": "Bank, card, UPI and wallet alert formats. Add a new format by appending an entry to `patterns`; no code change is needed. Each `regex` is case-insensitive and uses named groups: amount (required), last4, merchant, date, balance. `direction` is debit or credit. Patterns are tried in order; the generic rules below catch anything they miss.",
+  "ignore": [
+    {
+      "id": "otp",
+      "regex": "\\b(otp|one[ -]?time[ -]?pass(word|code)|verification code|security code|cvv|do not share|never share|is your .{0,20}code)\\b"
+    },
+    {
+      "id": "request",
+      "regex": "\\b(has requested|requested money|collect request|payment request|request(ed)? (of|for) (rs|inr)|approve the request|pay now)\\b"
+    },
+    {
+      "id": "failed",
+      "regex": "\\b(declined|failed|unsuccessful|not successful|could not be processed|was not processed|has been reversed due to|insufficient (funds|balance)|incorrect pin)\\b"
+    },
+    {
+      "id": "future",
+      "regex": "\\b(will be (debited|deducted|credited|charged)|is scheduled|scheduled for|upcoming (payment|mandate)|mandate (is |has been )?(created|registered|set up)|e-?mandate|standing instruction (is )?(set|registered))\\b"
+    },
+    {
+      "id": "due",
+      "regex": "\\b(is due|payment due|due date|total (amt|amount) due|min(imum)? (amt|amount) due|statement (is|has been) (ready|generated)|bill (is )?generated|overdue)\\b"
+    },
+    {
+      "id": "promo",
+      "regex": "\\b(offer|offers|discount|sale|win|winner|congratulations|pre-?approved|eligible for|apply now|loan (of|up ?to|offer)|limit (increase|enhancement)|t&c|t & c|click|shop now|buy now|upgrade|reward points? (worth|of)|voucher|coupon|emi (offer|at)|lowest price|hurry|free )\\b"
+    },
+    {
+      "id": "info",
+      "regex": "\\b(available balance (is|in)|your (a/c|account) balance|balance enquiry|kyc|login|logged in|password|beneficiary .{0,30}(added|registered)|cheque book|card (is )?(blocked|activated|dispatched|delivered))\\b"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "upi-sent-from-ac",
+      "issuer": "HDFC / Kotak style UPI send",
+      "regex": "sent (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) from .{0,30}?(?:a/c|ac|acct|account) ?(?:no\\.?)? ?[x*]*(?<last4>\\d{3,6}) to (?<merchant>.+?) on (?<date>\\d{1,2}[-/]\\d{1,2}[-/]\\d{2,4})",
+      "direction": "debit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "upi-received-in-ac",
+      "issuer": "Kotak style UPI receive",
+      "regex": "received (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) in (?:your )?.{0,30}?(?:a/c|ac|acct|account) ?[x*]*(?<last4>\\d{3,6}) from (?<merchant>.+?) on (?<date>\\d{1,2}[-/]\\d{1,2}[-/]\\d{2,4})",
+      "direction": "credit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "card-spent-on-at",
+      "issuer": "HDFC / SBI Card style",
+      "regex": "(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) (?:was )?spent on (?:your )?.{0,40}?card (?:ending (?:with )?|no\\.? ?)?[x*]*(?<last4>\\d{4}) at (?<merchant>.+?) on (?<date>\\d{1,4}[-/]\\w{2,3}[-/]\\d{2,4})",
+      "direction": "debit",
+      "instrument": "card",
+      "method": "card"
+    },
+    {
+      "id": "card-spent-prefix",
+      "issuer": "HDFC new style",
+      "regex": "spent (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) on .{0,40}?card [x*]*(?<last4>\\d{4}) at (?<merchant>.+?) on (?<date>\\d{1,4}[-/]\\w{2,3}[-/]\\d{2,4})",
+      "direction": "debit",
+      "instrument": "card",
+      "method": "card"
+    },
+    {
+      "id": "card-spent-using",
+      "issuer": "ICICI Card style",
+      "regex": "(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) spent (?:using|on) .{0,40}?card [x*]*(?<last4>\\d{4}) on (?<date>\\d{1,2}[-/ ]\\w{3}[-/ ]\\d{2,4}) (?:on|at) (?<merchant>.+?)\\. .*?(?:avl|available) (?:limit|lmt|bal)[:\\- ]*(?:rs\\.?|inr|₹) ?(?<balance>[\\d,]+(?:\\.\\d{1,2})?)",
+      "direction": "debit",
+      "instrument": "card",
+      "method": "card"
+    },
+    {
+      "id": "card-spent-axis",
+      "issuer": "Axis Card style",
+      "regex": "spent (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) .{0,30}?card (?:no\\.? ?)?[x*]*(?<last4>\\d{4}) (?<date>\\d{1,2}-\\d{1,2}-\\d{2,4}) [\\d:]+ (?:ist )?(?<merchant>.+?) avl (?:limit|lmt)[:\\- ]*(?:rs\\.?|inr|₹) ?(?<balance>[\\d,]+(?:\\.\\d{1,2})?)",
+      "direction": "debit",
+      "instrument": "card",
+      "method": "card"
+    },
+    {
+      "id": "amex-spent",
+      "issuer": "American Express style",
+      "regex": "you'?ve spent (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) on your .{0,20}?card \\*+ ?(?<last4>\\d{4,5}) at (?<merchant>.+?) on (?<date>\\d{1,2} \\w+ \\d{4})",
+      "direction": "debit",
+      "instrument": "card",
+      "method": "card"
+    },
+    {
+      "id": "ac-debited-by-trf",
+      "issuer": "SBI UPI style",
+      "regex": "a/c [x*]*(?<last4>\\d{3,6}) ?-? ?debited by (?:rs\\.?|inr|₹)? ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) on (?:date )?(?<date>\\d{1,2}[-/ ]?\\w{3}[-/ ]?\\d{2,4}) (?:trf|transfer(?:red)?) to (?<merchant>.+?) ref",
+      "direction": "debit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "ac-credited-by-from",
+      "issuer": "SBI style credit",
+      "regex": "a/c [x*]*(?<last4>\\d{3,6}) ?-? ?credited by (?:rs\\.?|inr|₹)? ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) on (?<date>\\d{1,2}[-/ ]?\\w{3}[-/ ]?\\d{2,4}) (?:transfer|trf) from (?<merchant>.+?) ref",
+      "direction": "credit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "acct-debited-for-credited",
+      "issuer": "ICICI UPI style",
+      "regex": "(?:acct|a/c|account) [x*]*(?<last4>\\d{3,6}) (?:is )?debited (?:for|with) (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) on (?<date>\\d{1,2}-\\w{3}-\\d{2,4})[;,.] ?(?<merchant>.+?) credited",
+      "direction": "debit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "acct-credited-with-from",
+      "issuer": "ICICI style credit",
+      "regex": "(?:acct|a/c|account) [x*]*(?<last4>\\d{3,6}) is credited with (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) on (?<date>\\d{1,2}-\\w{3}-\\d{2,4}) from (?<merchant>.+?)\\. ",
+      "direction": "credit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "debited-from-ac-at",
+      "issuer": "Axis account style",
+      "regex": "(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) debited from a/c (?:no\\.? ?)?[x*]*(?<last4>\\d{3,6}) on (?<date>\\d{1,2}-\\d{1,2}-\\d{2,4}) [\\d:]+ (?:ist )?at (?<merchant>.+?)\\. avl bal[- :]*(?:rs\\.?|inr|₹) ?(?<balance>[\\d,]+(?:\\.\\d{1,2})?)",
+      "direction": "debit",
+      "instrument": "account",
+      "method": null
+    },
+    {
+      "id": "deposited-in-ac",
+      "issuer": "HDFC deposit style",
+      "regex": "(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) (?:is |has been )?deposited in .{0,30}?a/c [x*]*(?<last4>\\d{3,6}) on (?<date>\\d{1,2}-\\w{3}-\\d{2,4}) for (?<merchant>.+?)\\. ?avl bal (?:rs\\.?|inr|₹) ?(?<balance>[\\d,]+(?:\\.\\d{1,2})?)",
+      "direction": "credit",
+      "instrument": "account",
+      "method": null
+    },
+    {
+      "id": "money-transfer-from-ac",
+      "issuer": "HDFC transfer style",
+      "regex": "money transfer: ?(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) from .{0,30}?a/c [x*]*(?<last4>\\d{3,6}) on (?<date>\\d{1,2}-\\d{1,2}-\\d{2,4}) to (?<merchant>.+?) upi",
+      "direction": "debit",
+      "instrument": "account",
+      "method": "upi"
+    },
+    {
+      "id": "wallet-paid-to",
+      "issuer": "Wallet payment style",
+      "regex": "paid (?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) to (?<merchant>.+?) from .{0,20}?wallet",
+      "direction": "debit",
+      "instrument": "wallet",
+      "method": "wallet"
+    },
+    {
+      "id": "atm-withdrawn",
+      "issuer": "ATM withdrawal style",
+      "regex": "(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?) (?:was |has been )?withdrawn (?:at|from) .{0,40}?(?:a/c|card|account) ?(?:no\\.? ?)?[x*]*(?<last4>\\d{3,6})",
+      "direction": "debit",
+      "instrument": "account",
+      "method": "cash"
+    }
+  ],
+  "generic": {
+    "amount": "(?:rs\\.?|inr|₹) ?(?<amount>[\\d,]+(?:\\.\\d{1,2})?)",
+    "amountAfter": "(?:debited|credited|spent|paid|received|withdrawn|deposited) (?:by|for|with|of)? ?(?<amount>[\\d,]+(?:\\.\\d{1,2}))\\b",
+    "debit": "\\b(debited|debit|spent|sent|paid|purchase|purchased|withdrawn|withdrawal|deducted|charged|payment of .{0,24}(made|done)|txn of)\\b",
+    "credit": "\\b(credited|credit of|received|deposited|refund(ed)?|reversed|reversal|cashback|added to)\\b",
+    "last4": "(?:a/c|acct|account|ac|card|ending(?: with| in)?|no\\.?)\\s*(?:no\\.?|number)?\\s*[:\\-]?\\s*(?:x|\\*|\\.)+\\s?(?<last4>\\d{3,6})",
+    "card": "\\b(credit card|debit card|card ending|card no|card x|card \\*|creditcard)\\b",
+    "wallet": "\\bwallet\\b",
+    "upi": "\\b(upi|vpa|imps|@ok\\w+|@ybl|@paytm|@upi)\\b",
+    "merchant": [
+      "(?:\\bat|\\btowards|\\btrf to|\\btransfer(?:red)? to|\\bpaid to|\\bsent to|\\bto vpa|\\bvpa|\\binfo:?)\\s+(?<merchant>[^.;,]{2,40}?)(?=\\s+(?:on|ref|upi|avl|bal|txn|via|using|from|not you|if not|dt)\\b|[.;,]|$)",
+      "\\bto\\s+(?<merchant>[^.;,]{2,40}?)(?=\\s+(?:on|ref|upi|avl|bal|txn|via|using|not you|if not|dt)\\b|[.;,]|$)",
+      "\\b(?:from|by)\\s+(?<merchant>[^.;,]{2,40}?)(?=\\s+(?:on|ref|upi|avl|bal|txn|via|using|not you|if not|dt|has|is|was|credited|to your)\\b|[.;,]|$)"
+    ],
+    "balance": "(?:avl\\.?|available|avail\\.?|new|updated|closing|total)?\\s*(?:bal(?:ance)?|limit|lmt)\\s*(?:is|:|-|of)?\\s*(?:rs\\.?|inr|₹)\\s?(?<balance>[\\d,]+(?:\\.\\d{1,2})?)",
+    "billPayment": "\\b(credit card (bill|payment)|card bill|cc bill|payment .{0,30}received .{0,30}card|received .{0,20}payment .{0,30}card|towards .{0,20}card|cred club|billpay|bill payment)\\b",
+    "last4Plain": "(?:card|a/c|account) (?:no\\.? )?ending(?: with| in)? (?<last4>\\d{4})\\b"
+  }
+}

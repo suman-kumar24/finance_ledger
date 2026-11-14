@@ -1,0 +1,7 @@
+{
+  "name": "ledger-sms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reads bank SMS alerts from the inbox on demand (Android only). Local module of the Ledger app.",
+  "main": "index.ts"
+}

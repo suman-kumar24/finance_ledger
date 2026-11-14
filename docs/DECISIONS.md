@@ -105,3 +105,21 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | Learning | On save, the payee is remembered against the category chosen; if the user corrected the parser's guess, that keyword is re-pointed too. A keyword the user typed in Settings is never overwritten by learning | Brief section 6. |
 | Never saves silently | A parse only fills the quick-add sheet; guessed or missing fields get a dashed warning outline, a "?" icon and are named in `uncertain` | Brief section 6. |
 | Speech | `expo-speech-recognition` with `en-IN` / `hi-IN` (toggle on the sheet). On-device recognition is required when the phone supports it. If it does not, the user is told that Android's speech service may send audio to its servers and must agree once before the microphone is used | Honest about the one place audio could leave the phone; typing is always fully offline. |
+
+## Phase 7: SMS import
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Pattern storage | `src/sms/data/patterns.json`: ignore rules, issuer patterns (regular expressions with named groups `amount`, `last4`, `merchant`, `date`, `balance`) and the generic fallback rules | New formats are added as data. A test requires every pattern to be exercised by a sample. |
+| Generic fallback | Needs an amount and a debit or credit word; when both appear ("debited ... and credited to X") the first one wins | Catches banks without a specific pattern. |
+| What is ignored | OTPs, promotions, payment requests, failed or declined transactions, upcoming debits and mandates, due reminders, balance and service notices, and anything from a plain phone number | None of these are transactions that happened. They are dropped in memory and never stored. |
+| What is stored | Parsed fields and a SHA-256 hash of sender, time and text. Never the message text | Brief section 7. A test dumps the table and checks no message fragments are present. |
+| Date in an alert | Read day-first; used only if within 7 days of when the message arrived, otherwise the arrival day is used | Guards against misreading a reference number or a US-style date. |
+| Account matching | By last 4 digits. An account whose own "last 4" matches is used automatically; otherwise the user picks once and it is remembered for every later alert | "Mapped once". |
+| Duplicates | (1) same hash: skipped. (2) same amount, same account when known, same direction, within one day of an existing entry or pending alert: imported but flagged, with a one-tap "dismiss likely duplicates" | A hand-typed entry is not silently doubled, and nothing is silently dropped either. |
+| Card bill payments | Alerts that mention a card bill are suggested as `card_payment`, not as an expense or income | Protects the no-double-count rule on the import path too. |
+| Review first | Alerts go to "Inbox to review"; the ledger changes only when the user taps Add | Brief section 7. |
+| Native module | A local Expo module in `modules/ledger-sms` (Kotlin) with `readInbox(since, limit)` and an in-app receiver for new messages. It declares no permissions itself | Keeps the `play` flavour clean. |
+| New-message listening | A receiver registered only while the app is running; anything missed is found by the next inbox scan | No background service and no manifest receiver. |
+| Flavours | Real Gradle product flavours `full` and `play`, added by a config plugin. The feature's availability is decided at run time from the installed manifest, not from a JavaScript flag | The same JavaScript bundle is correct in both builds. |
+| Turning it off | Deletes the review inbox and the account matches | Leaves nothing behind. |

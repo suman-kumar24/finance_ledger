@@ -597,3 +597,49 @@ keywords.emptyTitle	No keywords of your own yet	अभी आपके अपन
 keywords.emptyBody	Ledger already knows common words in English, Hindi and Hinglish. Add the names you use.	Ledger पहले से अंग्रेज़ी, हिन्दी और हिंग्लिश के आम शब्द जानता है। अपने इस्तेमाल के नाम जोड़ें।
 keywords.learned	Learned	सीखा हुआ
 keywords.remove	Remove {word}	{word} हटाएँ
+settings.sectionData	Your data	आपका डेटा
+sms.title	Bank SMS import	बैंक SMS आयात
+sms.off	Off	बंद
+sms.unsupportedTitle	Not available in this version	इस संस्करण में उपलब्ध नहीं
+sms.unsupportedBody	This build of Ledger does not ask for SMS access, so it cannot read bank alerts. You can still add entries by typing, by voice, or by importing a CSV file.	Ledger का यह संस्करण SMS की अनुमति नहीं माँगता, इसलिए बैंक अलर्ट नहीं पढ़ सकता। आप लिखकर, बोलकर या CSV फ़ाइल आयात करके प्रविष्टियाँ जोड़ सकते हैं।
+sms.whatTitle	What this does	यह क्या करता है
+sms.whatBody	Ledger can read the transaction alerts your bank and card send by SMS, and offer them to you as entries to review.	Ledger आपके बैंक और कार्ड के SMS लेन-देन अलर्ट पढ़कर उन्हें जाँचने के लिए प्रविष्टियों के रूप में दिखा सकता है।
+sms.point1	It reads the SMS inbox on this phone to find bank, card, UPI and wallet transaction alerts.	यह इस फ़ोन के SMS इनबॉक्स में बैंक, कार्ड, UPI और वॉलेट के लेन-देन अलर्ट ढूँढता है।
+sms.point2	OTPs, offers and personal messages are skipped and never stored.	OTP, ऑफ़र और निजी संदेश छोड़ दिए जाते हैं और कभी सेव नहीं होते।
+sms.point3	Only the amount, date, merchant, last 4 digits and balance are kept. The message text is not saved.	सिर्फ़ रकम, तारीख, दुकान का नाम, आख़िरी 4 अंक और बैलेंस रखे जाते हैं। संदेश का पाठ सेव नहीं होता।
+sms.point4	Nothing is added to your ledger until you review it and tap Add.	जब तक आप जाँचकर "जोड़ें" न दबाएँ, आपके खाते में कुछ नहीं जुड़ता।
+sms.point5	Everything happens on this phone. No message ever leaves it.	सब कुछ इसी फ़ोन पर होता है। कोई संदेश फ़ोन से बाहर नहीं जाता।
+sms.turnOn	Allow and turn on	अनुमति दें और चालू करें
+sms.turnOff	Turn off SMS import	SMS आयात बंद करें
+sms.turnOffTitle	Turn off SMS import?	SMS आयात बंद करें?
+sms.turnOffBody	Alerts waiting for review and the saved account matches are deleted. Entries you already added stay in your ledger. To remove the permission as well, use the phone's app settings.	जाँच के लिए रुके अलर्ट और सेव किए गए खाता मिलान हट जाएँगे। पहले जोड़ी गई प्रविष्टियाँ बनी रहेंगी। अनुमति भी हटाने के लिए फ़ोन की ऐप सेटिंग इस्तेमाल करें।
+sms.permissionDenied	SMS permission was not given, so import stays off.	SMS की अनुमति नहीं मिली, इसलिए आयात बंद रहेगा।
+sms.pending	{count} to review	{count} जाँचने को
+sms.review	Review	जाँचें
+sms.inbox	Inbox to review	जाँच का इनबॉक्स
+sms.scanNow	Check for new alerts	नए अलर्ट देखें
+sms.scanning	Checking…	देख रहा हूँ…
+sms.scanSub	Reads messages received since the last check	पिछली जाँच के बाद आए संदेश पढ़ता है
+sms.scanResult	{added} new alerts found, {ignored} other messages skipped	{added} नए अलर्ट मिले, {ignored} अन्य संदेश छोड़े गए
+sms.scanNothing	Nothing new	कुछ नया नहीं
+sms.scanFailed	Could not read messages	संदेश नहीं पढ़ पाया
+sms.listen	Pick up new alerts as they arrive	नए अलर्ट आते ही पकड़ें
+sms.listenSub	Works while Ledger is open; otherwise they are found at the next check	Ledger खुला होने पर काम करता है; वरना अगली जाँच में मिल जाते हैं
+sms.mapTitle	Matched accounts	मिलाए गए खाते
+sms.mapEmpty	No accounts matched yet	अभी कोई खाता नहीं मिलाया
+sms.mapEmptyBody	The first time an alert mentions a card or account by its last digits, you choose which account it is. Ledger remembers it.	जब कोई अलर्ट पहली बार कार्ड या खाते के आख़िरी अंक बताता है, आप चुनते हैं कि वह कौन सा खाता है। Ledger इसे याद रखता है।
+sms.inboxExplain	These came from bank SMS alerts. Check each one, then add it or dismiss it.	ये बैंक SMS अलर्ट से आए हैं। हर एक जाँचें, फिर जोड़ें या हटाएँ।
+sms.inboxEmpty	Nothing to review	जाँचने को कुछ नहीं
+sms.inboxEmptyBody	New bank alerts will appear here.	नए बैंक अलर्ट यहाँ दिखेंगे।
+sms.debit	Money out	पैसा गया
+sms.credit	Money in	पैसा आया
+sms.maybeDuplicate	Looks like one you already have	लगता है यह पहले से दर्ज है
+sms.looksLikeBill	Looks like a card bill payment	कार्ड बिल भुगतान लगता है
+sms.balanceAfter	Balance {amount}	बैलेंस {amount}
+sms.whichAccount	Which account is ··{last4}?	··{last4} कौन सा खाता है?
+sms.fromWhere	Choose where from	कहाँ से आया चुनें
+sms.add	Add	जोड़ें
+sms.added	Added to your ledger	आपके खाते में जोड़ दिया गया
+sms.dismiss	Dismiss	हटाएँ
+sms.dismissDuplicates	Dismiss {count} likely duplicates	{count} संभावित दोहराव हटाएँ
+sms.dismissedN	{count} dismissed	{count} हटाए गए

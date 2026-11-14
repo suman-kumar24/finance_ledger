@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { runMaintenance } from '@/data/maintenance';
 import { getDb, initDatabase } from '@/db/client';
+import { scanSms, startSmsListener } from '@/features/smsSync';
 import { dayFromDate } from '@/domain/dates';
 import { useSettings } from '@/hooks/useSettings';
 import { syncNotifications } from '@/notify';
@@ -32,10 +33,17 @@ function AppShell() {
       if (state === 'active') {
         runMaintenance(getDb(), dayFromDate(new Date()));
         void syncNotifications(getDb());
+        void scanSms(getDb()).catch(() => null);
       }
     });
     return () => sub.remove();
   }, []);
+
+  // SMS import is opt-in; both of these do nothing unless it is switched on.
+  useEffect(() => {
+    void scanSms(getDb()).catch(() => null);
+    return startSmsListener(getDb());
+  }, [settings.smsEnabled, settings.smsListenNew]);
 
   const base = c.dark ? DarkTheme : DefaultTheme;
   const navTheme = {

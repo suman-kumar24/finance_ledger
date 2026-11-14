@@ -4,6 +4,7 @@ import { Alert, Pressable, View } from 'react-native';
 import { listAccounts, listCardStatements } from '@/data/accounts';
 import type { PeriodView } from '@/data/queries';
 import { listRecurringRules, recordOccurrence, skipOccurrence } from '@/data/recurring';
+import { countInbox } from '@/data/sms';
 import { listEntriesForAccount, listScheduled } from '@/data/transactions';
 import { useLive } from '@/data/useLive';
 import { getDb } from '@/db/client';
@@ -42,6 +43,7 @@ export function OverviewExtras({ view, isCurrent }: { view: PeriodView; isCurren
         }));
       return {
         cards,
+        smsPending: countInbox(db),
         items: upcoming({
           today,
           cards,
@@ -105,6 +107,15 @@ export function OverviewExtras({ view, isCurrent }: { view: PeriodView; isCurren
 
   return (
     <>
+      {data.smsPending > 0 ? (
+        <Banner
+          tone="accent"
+          icon="inbox-arrow-down-outline"
+          title={t('sms.pending', { count: data.smsPending })}
+          actionLabel={t('sms.review')}
+          onAction={() => router.push('/sms-inbox')}
+        />
+      ) : null}
       {over.map((b) => (
         <Banner
           key={`over-${b.budgetId}`}

@@ -88,3 +88,13 @@ jest.mock('expo-speech-recognition', () => ({
   },
   useSpeechRecognitionEvent: jest.fn(),
 }));
+
+// Tests run as the `full` flavour unless a test says otherwise.
+jest.mock('@/sms/native', () => ({
+  smsSupported: jest.fn(() => true),
+  smsListenSupported: jest.fn(() => true),
+  hasSmsPermission: jest.fn(async () => true),
+  requestSmsPermission: jest.fn(async () => true),
+  readInbox: jest.fn(async () => []),
+  listenForSms: jest.fn(() => () => undefined),
+}));

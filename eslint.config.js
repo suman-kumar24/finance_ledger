@@ -1,6 +1,7 @@
 // @ts-check
 const expoConfig = require('eslint-config-expo/flat');
 const prettier = require('eslint-config-prettier');
+const globals = require('globals');
 
 /**
  * Two project-specific guarantees are enforced here (brief §10 and §11):
@@ -140,6 +141,10 @@ module.exports = [
   {
     files: ['scripts/**', '*.config.js', '*.config.ts', 'plugins/**', 'test/**', '**/__tests__/**'],
     rules: { 'no-console': 'off' },
+  },
+  {
+    files: ['**/__tests__/**/*.js', 'plugins/**/*.js'],
+    languageOptions: { globals: { ...globals.node, ...globals.jest } },
   },
   {
     files: ['**/__tests__/**', 'test/**', 'scripts/**'],

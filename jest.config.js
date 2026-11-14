@@ -15,6 +15,7 @@ module.exports = {
     'src/parse/**/*.ts',
     'src/sms/**/*.ts',
     '!src/sms/native.ts',
+    '!src/sms/testing/**',
     '!**/*.d.ts',
     '!**/index.ts',
   ],

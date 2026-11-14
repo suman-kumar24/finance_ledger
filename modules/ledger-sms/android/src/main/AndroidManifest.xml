@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+      Deliberately no <uses-permission> here.
+      READ_SMS and RECEIVE_SMS are declared only by the app's `full` product
+      flavour (see plugins/withLedgerFlavors.js), so the `play` flavour ships
+      without any SMS permission. This module checks the merged manifest at
+      run time and reports itself unsupported when the permission is absent.
+    -->
+</manifest>

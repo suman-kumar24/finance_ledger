@@ -78,7 +78,9 @@ const FORBIDDEN_IMPORT =
 function sourceFiles(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) return entry.name === '__tests__' ? [] : sourceFiles(full);
+    // Test folders hold fixtures (sample SMS text with placeholder links), not app code.
+    if (entry.isDirectory())
+      return ['__tests__', 'testing'].includes(entry.name) ? [] : sourceFiles(full);
     return /\.(ts|tsx|js|jsx)$/.test(entry.name) ? [full] : [];
   });
 }

@@ -508,3 +508,74 @@ describe('Phase 6: type or say it', () => {
     expect(screen.getByLabelText('Remove tapri')).toBeTruthy();
   });
 });
+
+describe('Phase 7: SMS import', () => {
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const SmsSettings = require('@/app/settings/sms').default;
+  const SmsInbox = require('@/app/sms-inbox').default;
+  const native = require('@/sms/native');
+  const sms = require('@/data/sms');
+  const { TRANSACTIONS } = require('@/sms/testing/samples');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+
+  it('is off by default and explains what is read before asking', async () => {
+    seedBasics(db);
+    expect(getSettings(db).smsEnabled).toBe(false);
+    await renderScreen(<SmsSettings />);
+    expect(
+      screen.getByText('OTPs, offers and personal messages are skipped and never stored.'),
+    ).toBeTruthy();
+    expect(native.requestSmsPermission).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByLabelText('Allow and turn on'));
+    expect(native.requestSmsPermission).toHaveBeenCalledTimes(1);
+    expect(getSettings(db).smsEnabled).toBe(true);
+  });
+
+  it('stays off when the permission is refused', async () => {
+    seedBasics(db);
+    native.requestSmsPermission.mockResolvedValueOnce(false);
+    await renderScreen(<SmsSettings />);
+    await fireEvent.press(screen.getByLabelText('Allow and turn on'));
+    expect(getSettings(db).smsEnabled).toBe(false);
+  });
+
+  it('hides the feature on a build without the SMS permission', async () => {
+    seedBasics(db);
+    native.smsSupported.mockReturnValue(false);
+    await renderScreen(<SmsSettings />);
+    expect(screen.getByText('Not available in this version')).toBeTruthy();
+    await renderScreen(<Settings />);
+    expect(screen.queryByText('Bank SMS import')).toBeNull();
+    native.smsSupported.mockReturnValue(true);
+  });
+
+  it('reviews an alert: map the card once, then add it to the ledger', async () => {
+    const { card } = seedBasics(db);
+    updateSettings(db, { smsEnabled: true });
+    sms.importSms(db, [
+      TRANSACTIONS.find((s: { name: string }) => s.name === 'SBI Card spent').sms,
+    ]);
+    await renderScreen(<SmsInbox />);
+    expect(screen.getByText('BOOK HOUSE')).toBeTruthy();
+    // The seeded card's last 4 digits are 4321, so it is matched without asking.
+    expect(screen.getByLabelText('Account: Rewards Card')).toBeTruthy();
+    expect(listTransactions(db)).toHaveLength(0);
+    await fireEvent.press(screen.getByLabelText('Add'));
+    expect(listTransactions(db)[0]).toMatchObject({
+      type: 'expense',
+      amount: 1_499_00,
+      accountId: card.id,
+      source: 'sms',
+      payee: 'BOOK HOUSE',
+    });
+    expect(sms.countInbox(db)).toBe(0);
+  });
+
+  it('shows the pending count on Overview', async () => {
+    seedBasics(db);
+    updateSettings(db, { smsEnabled: true });
+    sms.importSms(db, [TRANSACTIONS[0].sms]);
+    await renderScreen(<Overview />);
+    expect(screen.getByText('1 to review')).toBeTruthy();
+  });
+});
