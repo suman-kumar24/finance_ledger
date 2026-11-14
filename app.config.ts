@@ -76,5 +76,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   experiments: { typedRoutes: true },
   extra: {
     googleWebClientId: process.env.GOOGLE_WEB_CLIENT_ID ?? null,
+    // Links this app to its Expo (EAS Build) project. Not a secret.
+    eas: { projectId: '6db7d8ab-f457-44d3-98ee-6a1388e9f4d4' },
   },
 });
