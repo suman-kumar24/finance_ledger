@@ -31,6 +31,7 @@ import { BackupConnect } from '@/features/BackupConnect';
 import { PinSetup } from '@/features/PinSetup';
 import { ACCOUNT_TYPE_LABEL } from '@/features/txDisplay';
 import { useSettings } from '@/hooks/useSettings';
+import { requestNotifications, syncNotifications } from '@/notify';
 import { useToday } from '@/hooks/useToday';
 import { dayLabel, useT } from '@/i18n';
 import {
@@ -76,6 +77,11 @@ export default function Onboarding() {
       seedDefaultCategories(getDb(), settings.language);
       updateSettings(getDb(), { onboarded: true });
     });
+    // Budget, bill and recurring alerts are on by default; ask for the permission
+    // they need now, once, so they work from the first day.
+    void requestNotifications()
+      .then(() => syncNotifications(getDb()))
+      .catch(() => undefined);
     router.replace('/(tabs)');
   };
   const next = () => (index >= STEPS.length - 1 ? finish() : setIndex(index + 1));

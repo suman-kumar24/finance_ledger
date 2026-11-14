@@ -17,11 +17,30 @@ import { syncNotifications } from '@/notify';
 import { LockScreen } from '@/security/LockScreen';
 import { useAppLock, useScreenSecurity } from '@/security/useAppLock';
 import { useUi } from '@/state/ui';
-import { T } from '@/ui/kit';
+import { Button, T } from '@/ui/kit';
 import { SnackbarHost } from '@/ui/Snackbar';
 import { useTheme } from '@/ui/theme';
 
 void SplashScreen.preventAutoHideAsync();
+
+/** Shown instead of a blank screen if any screen throws. Data is untouched. */
+export function ErrorBoundary({ error, retry }: { error: Error; retry: () => Promise<void> }) {
+  return (
+    <View
+      style={{ flex: 1, justifyContent: 'center', padding: 24, gap: 12 }}
+      accessibilityRole="alert"
+    >
+      <T variant="title">Something went wrong</T>
+      <T tone="muted">
+        Your data is safe on this phone. Try again; if it keeps happening, restart the app.
+      </T>
+      <T variant="caption" tone="muted">
+        {error.message}
+      </T>
+      <Button label="Try again" onPress={() => void retry()} />
+    </View>
+  );
+}
 
 function AppShell() {
   const settings = useSettings();

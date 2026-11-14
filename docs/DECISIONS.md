@@ -147,3 +147,14 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | Icons | Original artwork drawn by `scripts/make-icons.py` (open ledger with a rising line) | Placeholder-quality; to be refined in the polish pass. |
 | Performance | A Jest test loads 20,000 rows and times the screens' queries; the transaction list is FlashList with paging | Indexed queries keep every query in the tens of milliseconds. |
 | Deferred to polish | TalkBack walkthrough on a device, empty-state review, icon refinement, Play listing assets | Needs a device and design time. |
+
+## Polish pass 1 (no device needed)
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Colour contrast | A test computes WCAG contrast for every text/background pair in both themes (4.5:1 text, 3:1 for bars) | Contrast was never checked numerically before; all pairs pass. |
+| Labels | Static audit found one control without an explicit spoken label (budget row); fixed. All other Pressables, inputs and switches have labels | TalkBack. |
+| Notification permission | Requested once when onboarding finishes (alerts are on by default) in addition to when a switch is turned on | Without it, default alerts would never fire. |
+| Error screen | Root `ErrorBoundary` shows a message and "Try again" instead of a blank screen | Crashes should be recoverable. |
+| Smoke test | Every route renders without console errors for an empty app, basic data, and the full demo dataset | Catches empty-state and wiring crashes. |
+| Icons | Regenerated at 4x and downsampled for smooth edges | Jagged polygon edges. |

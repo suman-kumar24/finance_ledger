@@ -178,6 +178,18 @@ export default function Budgets() {
               <Pressable
                 key={status.budgetId}
                 accessibilityRole="button"
+                accessibilityLabel={t('budget.rowA11y', {
+                  name: status.name,
+                  spent: money(status.spent),
+                  limit: money(status.limit),
+                  percent: status.percent,
+                  state:
+                    status.state === 'over'
+                      ? t('budget.over')
+                      : status.state === 'warning'
+                        ? t('budget.nearLimit')
+                        : t('budget.onTrack'),
+                })}
                 accessibilityHint={t('budget.editHint')}
                 onPress={() => open(status.budgetId)}
                 android_ripple={{ color: c.scrim }}

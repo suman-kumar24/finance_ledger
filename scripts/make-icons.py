@@ -7,11 +7,12 @@ OUT = "assets/images/"
 GREEN = (15, 92, 77, 255)
 MINT = (98, 213, 181, 255)
 WHITE = (255, 255, 255, 255)
-S = 1024
+S = 4096  # drawn 4x larger, then scaled down for smooth edges
+FINAL = 1024
 
 def glyph(draw, color, accent, scale=1.0):
     cx, cy = S / 2, S / 2
-    u = S / 1024 * scale
+    u = S / 1024 * scale  # artwork is designed on a 1024 grid
     def p(x, y): return (cx + (x - 512) * u, cy + (y - 512) * u)
     # Two pages of an open book
     draw.polygon([p(512, 330), p(250, 280), p(250, 700), p(512, 760)], fill=color)
@@ -23,7 +24,8 @@ def glyph(draw, color, accent, scale=1.0):
         r = 22 * u
         draw.ellipse([q[0] - r, q[1] - r, q[0] + r, q[1] + r], fill=accent)
 
-def save(img, name): img.save(OUT + name)
+def save(img, name):
+    img.resize((FINAL, FINAL), Image.LANCZOS).save(OUT + name)
 
 icon = Image.new("RGBA", (S, S), GREEN)
 glyph(ImageDraw.Draw(icon), WHITE, MINT)
@@ -41,9 +43,7 @@ splash = Image.new("RGBA", (S, S), (0, 0, 0, 0))
 glyph(ImageDraw.Draw(splash), WHITE, MINT, 0.8)
 save(splash, "splash-icon.png")
 
-note = Image.new("RGBA", (96, 96), (0, 0, 0, 0))
-d = ImageDraw.Draw(note)
-d.polygon([(48, 28), (14, 22), (14, 72), (48, 78)], fill=WHITE)
-d.polygon([(48, 28), (82, 22), (82, 72), (48, 78)], fill=WHITE)
-save(note, "notification-icon.png")
+note = Image.new("RGBA", (S, S), (0, 0, 0, 0))
+glyph(ImageDraw.Draw(note), WHITE, WHITE, 0.8)
+note.resize((96, 96), Image.LANCZOS).save(OUT + "notification-icon.png")
 print("icons written")
