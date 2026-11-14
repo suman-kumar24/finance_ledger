@@ -71,6 +71,22 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     '@react-native-google-signin/google-signin',
+    [
+      'expo-build-properties',
+      {
+        android: {
+          // Release builds are shrunk with R8. WorkManager (used by expo-background-task
+          // for the daily backup) creates its Room database by reflection, so R8 must not
+          // remove the generated constructors. Without this the app crashes at launch with
+          // NoSuchMethodException: androidx.work.impl.WorkDatabase_Impl.<init>.
+          extraProguardRules: [
+            '-keep class * extends androidx.room.RoomDatabase { <init>(...); }',
+            '-keep class androidx.work.impl.WorkDatabase_Impl { *; }',
+            '-keep class androidx.work.impl.** { <init>(...); }',
+          ].join('\n'),
+        },
+      },
+    ],
     './plugins/withLedgerFlavors',
   ],
   experiments: { typedRoutes: true },
