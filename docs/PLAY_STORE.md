@@ -99,3 +99,30 @@ in `src/i18n/strings.tsv`)
 > amount, date, merchant, last 4 digits and balance are kept. The message text is not saved.
 > Nothing is added to your ledger until you review it and tap Add. Everything happens on this
 > phone. No message ever leaves it.
+
+## Data safety form answers
+
+These match what the app does (see `docs/PRIVACY_POLICY.md`). Re-check them against the Play Console form before submitting, since its wording changes.
+
+**Does your app collect or share any of the required user data types?**
+Collected: **No** for the `play` flavour when Drive backup is not used. Backup data goes to the user's own Google Drive, not to the developer. Play's guidance treats data processed only on the device, or sent to the user's own account at their request, as not "collected" by the developer. If you prefer to be conservative, declare the entries marked (optional) below.
+
+| Question | Answer |
+| --- | --- |
+| Data collected by the developer | None. The developer operates no server. |
+| Data shared with third parties | None. |
+| Is all user data encrypted in transit? | Yes. The only transfer is HTTPS to Google's Drive API, at the user's request. |
+| Can users request that data is deleted? | Yes. "Delete all data" in the app erases everything on the device; backups live in the user's own Drive and can be deleted there. |
+| Does the app follow the Families policy? | Not directed at children. |
+
+Optional conservative declarations, if you decide to declare Drive backup:
+
+| Data type | Collected | Shared | Purpose | Optional? |
+| --- | --- | --- | --- | --- |
+| Financial info: user payment info / other financial info | Yes (stored in the user's own Drive) | No | App functionality (backup) | Yes, the user opts in |
+| Personal info: email address (Google account shown in settings) | Yes | No | App functionality | Yes |
+| Audio: voice or sound recordings (speech entry, only if the phone's speech service processes audio online) | Processed by the system speech service, not by Ledger | No | App functionality | Yes |
+
+The `full` flavour additionally reads SMS on the device. SMS content is processed on the device and not collected or shared; the declaration text above applies.
+
+**Permissions declared in the `play` build:** RECORD_AUDIO, POST_NOTIFICATIONS, USE_BIOMETRIC, USE_FINGERPRINT, plus those added by libraries (INTERNET and ACCESS_NETWORK_STATE for Drive backup and the Wi-Fi check). No SMS permission.

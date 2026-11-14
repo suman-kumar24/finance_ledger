@@ -138,3 +138,12 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | CSV export | Exact decimals, signed column, formula-neutralised cells; opens the share sheet | The app sends nothing itself. |
 | CSV import | Header-based column guess, user can remap, date order detected, preview with skipped rows and unknown categories before saving | Brief section 9. |
 | Without Drive | Monthly export reminder (Phase 4) is scheduled from the last export or backup | Brief section 9. |
+
+## Phase 9 (first pass): working model
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Demo data | `npm run seed:demo` builds a fictional dataset in memory and writes it as a restorable backup file; the app never contains it | Same restore path a real user would use. |
+| Icons | Original artwork drawn by `scripts/make-icons.py` (open ledger with a rising line) | Placeholder-quality; to be refined in the polish pass. |
+| Performance | A Jest test loads 20,000 rows and times the screens' queries; the transaction list is FlashList with paging | Indexed queries keep every query in the tens of milliseconds. |
+| Deferred to polish | TalkBack walkthrough on a device, empty-state review, icon refinement, Play listing assets | Needs a device and design time. |
