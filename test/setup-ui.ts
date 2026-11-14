@@ -98,3 +98,37 @@ jest.mock('@/sms/native', () => ({
   readInbox: jest.fn(async () => []),
   listenForSms: jest.fn(() => () => undefined),
 }));
+
+jest.mock('@react-native-google-signin/google-signin', () => ({
+  GoogleSignin: {
+    configure: jest.fn(),
+    hasPlayServices: jest.fn(async () => true),
+    signIn: jest.fn(async () => ({
+      type: 'success',
+      data: { user: { email: 'me@example.invalid' } },
+    })),
+    signInSilently: jest.fn(async () => ({ type: 'success' })),
+    getCurrentUser: jest.fn(() => ({})),
+    hasPreviousSignIn: jest.fn(() => true),
+    getTokens: jest.fn(async () => ({ accessToken: 'token', idToken: 'id' })),
+    signOut: jest.fn(async () => null),
+    revokeAccess: jest.fn(async () => null),
+  },
+}));
+jest.mock('expo-network', () => ({
+  getNetworkStateAsync: jest.fn(async () => ({ isConnected: true, type: 'WIFI' })),
+  NetworkStateType: { WIFI: 'WIFI' },
+}));
+jest.mock('expo-background-task', () => ({
+  BackgroundTaskResult: { Success: 1, Failed: 2 },
+  registerTaskAsync: jest.fn(async () => undefined),
+  unregisterTaskAsync: jest.fn(async () => undefined),
+}));
+jest.mock('expo-task-manager', () => ({ defineTask: jest.fn() }));
+jest.mock('expo-constants', () => ({ expoConfig: { version: '1.0.0', extra: {} } }));
+jest.mock('expo-file-system', () => ({ File: class {}, Paths: { cache: '' } }));
+jest.mock('expo-sharing', () => ({
+  isAvailableAsync: jest.fn(async () => true),
+  shareAsync: jest.fn(),
+}));
+jest.mock('expo-document-picker', () => ({ getDocumentAsync: jest.fn() }));

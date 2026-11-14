@@ -400,7 +400,7 @@ export default function Onboarding() {
       title = t('onb.backupTitle');
       body = t('onb.backupBody');
       content = (
-        <Card style={{ gap: space.md }}>
+        <Card>
           <BackupConnect />
         </Card>
       );

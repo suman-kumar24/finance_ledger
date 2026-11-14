@@ -123,3 +123,18 @@ Choices made while building Ledger that the brief left open. Newest phase last.
 | New-message listening | A receiver registered only while the app is running; anything missed is found by the next inbox scan | No background service and no manifest receiver. |
 | Flavours | Real Gradle product flavours `full` and `play`, added by a config plugin. The feature's availability is decided at run time from the installed manifest, not from a JavaScript flag | The same JavaScript bundle is correct in both builds. |
 | Turning it off | Deletes the review inbox and the account matches | Leaves nothing behind. |
+
+## Phase 8: backup, restore, export
+
+| Topic | Decision | Why |
+| --- | --- | --- |
+| Backup file | One JSON document: app id, schema version, time, counts and every table. Restore recomputes counts, checks every money column is an integer, and refuses newer versions | An older app never guesses at a newer file. |
+| Encryption | Optional passphrase: scrypt (N=2^15, r=8, p=1) then AES-256-GCM, random salt and nonce, header authenticated; pure JS (@noble) | Works identically on the phone and in tests; no native code. |
+| Passphrase storage | Android Keystore-backed secure store, never the database or a backup | Automatic daily backups need it; it must not leave the phone. |
+| Drive | `drive.appdata` scope only; all requests in `src/backup/drive`, host `www.googleapis.com` only (guard test); last 7 backups kept | Brief sections 9 and 10. |
+| Auto backup | Once a day, Wi-Fi only; runs on app open and as a background task when Android allows | Android does not guarantee background timing; app open catches up. |
+| Restore | Shows date and counts, then replaces all data in one SQLite transaction; this phone's lock, backup and SMS settings are kept | All or nothing. |
+| Excluded from backups | Device-only settings, the SMS review inbox, PIN, passphrase | They belong to the phone. |
+| CSV export | Exact decimals, signed column, formula-neutralised cells; opens the share sheet | The app sends nothing itself. |
+| CSV import | Header-based column guess, user can remap, date order detected, preview with skipped rows and unknown categories before saving | Brief section 9. |
+| Without Drive | Monthly export reminder (Phase 4) is scheduled from the last export or backup | Brief section 9. |

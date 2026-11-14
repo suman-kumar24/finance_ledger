@@ -643,3 +643,93 @@ sms.added	Added to your ledger	आपके खाते में जोड़ 
 sms.dismiss	Dismiss	हटाएँ
 sms.dismissDuplicates	Dismiss {count} likely duplicates	{count} संभावित दोहराव हटाएँ
 sms.dismissedN	{count} dismissed	{count} हटाए गए
+backup.title	Google Drive backup	Google Drive बैकअप
+backup.on	Backup is on	बैकअप चालू है
+backup.off	Backup is off	बैकअप बंद है
+backup.explain	Backups are saved to a private app folder in your own Google Drive. Only Ledger on your account can read that folder, and Ledger cannot see anything else in your Drive.	बैकअप आपके अपने Google Drive के निजी ऐप फ़ोल्डर में सेव होते हैं। वह फ़ोल्डर सिर्फ़ आपके अकाउंट का Ledger पढ़ सकता है, और Ledger आपके Drive में और कुछ नहीं देख सकता।
+backup.connect	Connect Google Drive	Google Drive जोड़ें
+backup.connected	Connected as {account}	{account} से जुड़ा
+backup.connectFailed	Could not connect. Check the internet connection and try again.	जुड़ नहीं पाया। इंटरनेट जाँचें और फिर कोशिश करें।
+backup.account	Account: {account}	अकाउंट: {account}
+backup.last	Last backup: {date}, {time}	पिछला बैकअप: {date}, {time}
+backup.lastShort	Last backup {date}	पिछला बैकअप {date}
+backup.never	No backup yet	अभी कोई बैकअप नहीं
+backup.now	Back up now	अभी बैकअप लें
+backup.working	Working…	काम चल रहा है…
+backup.done	Backup saved to Google Drive	बैकअप Google Drive पर सेव हुआ
+backup.failed	That did not work.	यह नहीं हो पाया।
+backup.listFailed	Could not load your backups. Check the internet connection.	आपके बैकअप नहीं दिखा पाया। इंटरनेट जाँचें।
+backup.auto	Back up daily on Wi-Fi	रोज़ Wi-Fi पर बैकअप
+backup.autoSub	Once a day, only on Wi-Fi. Runs when you open Ledger, and in the background when Android allows.	दिन में एक बार, सिर्फ़ Wi-Fi पर। Ledger खोलने पर चलता है, और जब Android अनुमति दे तब पीछे भी।
+backup.encrypted	Backups are encrypted	बैकअप एन्क्रिप्टेड हैं
+backup.notEncrypted	Backups are not encrypted	बैकअप एन्क्रिप्टेड नहीं हैं
+backup.encryptionSub	Protect backups with a passphrase only you know	सिर्फ़ आपको पता पासफ़्रेज़ से बैकअप सुरक्षित करें
+backup.encryptionOn	Backups will now be encrypted	अब बैकअप एन्क्रिप्ट होंगे
+backup.passphraseExplain	With a passphrase, each backup is encrypted on this phone before it is uploaded. Ledger cannot recover a forgotten passphrase: without it, an encrypted backup cannot be opened by anyone.	पासफ़्रेज़ के साथ हर बैकअप अपलोड से पहले इसी फ़ोन पर एन्क्रिप्ट होता है। भूला हुआ पासफ़्रेज़ Ledger वापस नहीं ला सकता: उसके बिना एन्क्रिप्टेड बैकअप कोई नहीं खोल सकता।
+backup.passphrase	Passphrase	पासफ़्रेज़
+backup.passphraseHint	At least {min} characters. A few unrelated words work well.	कम से कम {min} अक्षर। कुछ असंबंधित शब्द अच्छे रहते हैं।
+backup.passphraseRepeat	Type it again	फिर से लिखें
+backup.passphraseMismatch	The two do not match	दोनों एक जैसे नहीं हैं
+backup.setPassphrase	Encrypt backups	बैकअप एन्क्रिप्ट करें
+backup.removePassphrase	Stop encrypting new backups	नए बैकअप एन्क्रिप्ट करना बंद करें
+backup.needPassphrase	This backup is encrypted. Enter its passphrase to open it.	यह बैकअप एन्क्रिप्टेड है। खोलने के लिए इसका पासफ़्रेज़ डालें।
+backup.wrongPassphrase	That passphrase is not right, or the file is damaged.	यह पासफ़्रेज़ सही नहीं है, या फ़ाइल खराब है।
+backup.open	Open	खोलें
+backup.restoreTitle	Restore	वापस लाएँ
+backup.restoreHint	Shows what the backup contains before restoring	वापस लाने से पहले बैकअप में क्या है दिखाता है
+backup.none	No backups in your Drive yet	आपके Drive में अभी कोई बैकअप नहीं
+backup.noneBody	Tap "Back up now" to make the first one.	पहला बैकअप लेने के लिए "अभी बैकअप लें" दबाएँ।
+backup.size	{kb} KB	{kb} KB
+backup.keeps	The 7 most recent backups are kept; older ones are deleted automatically.	सबसे नए 7 बैकअप रखे जाते हैं; पुराने अपने आप हट जाते हैं।
+backup.disconnect	Disconnect Google Drive	Google Drive हटाएँ
+backup.disconnectTitle	Disconnect Google Drive?	Google Drive हटाएँ?
+backup.disconnectBody	Ledger signs out and stops backing up. Backups already in your Drive are kept; you can delete them from Google Drive's "Manage apps" settings.	Ledger साइन आउट होगा और बैकअप लेना बंद करेगा। आपके Drive के मौजूदा बैकअप बने रहेंगे; उन्हें Google Drive की "Manage apps" सेटिंग से हटा सकते हैं।
+backup.madeOn	Backup made on	बैकअप बना
+backup.replaceWarning	This replaces everything on this phone	यह इस फ़ोन का सब कुछ बदल देगा
+backup.replaceBody	All current accounts, transactions, budgets and plans are replaced by the backup. App lock and backup settings on this phone stay as they are.	मौजूदा सभी खाते, लेन-देन, बजट और योजनाएँ बैकअप से बदल जाएँगी। इस फ़ोन की ऐप लॉक और बैकअप सेटिंग वैसी ही रहेंगी।
+backup.restoreConfirm	Replace my data with this backup	मेरा डेटा इस बैकअप से बदलें
+backup.restored	Backup restored	बैकअप वापस लाया गया
+export.title	Export and import	एक्सपोर्ट और इम्पोर्ट
+export.sub	CSV and JSON files	CSV और JSON फ़ाइलें
+export.section	Export	एक्सपोर्ट
+export.csvAll	All transactions as CSV	सभी लेन-देन CSV में
+export.csvFiltered	Filtered transactions as CSV	फ़िल्टर किए लेन-देन CSV में
+export.json	Everything as JSON	सब कुछ JSON में
+export.jsonSub	A complete copy you can restore later	पूरी कॉपी जिसे बाद में वापस ला सकते हैं
+export.shareNote	The file opens in the share sheet so you choose where it goes. Exported files are not encrypted.	फ़ाइल शेयर शीट में खुलती है ताकि आप चुनें वह कहाँ जाए। एक्सपोर्ट की गई फ़ाइलें एन्क्रिप्टेड नहीं होतीं।
+export.filterTip	To export part of your data, set filters on the Transactions tab first.	डेटा का हिस्सा एक्सपोर्ट करने के लिए पहले लेन-देन टैब पर फ़िल्टर लगाएँ।
+export.failed	Could not create the file.	फ़ाइल नहीं बन पाई।
+import.section	Import	इम्पोर्ट
+import.csv	Import transactions from CSV	CSV से लेन-देन इम्पोर्ट करें
+import.csvSub	A bank statement or a file exported from another app	बैंक स्टेटमेंट या किसी और ऐप से एक्सपोर्ट की गई फ़ाइल
+import.title	Import CSV	CSV इम्पोर्ट
+import.empty	That file has no rows to import.	उस फ़ाइल में इम्पोर्ट करने को कोई पंक्ति नहीं है।
+import.unreadable	Could not read that file.	वह फ़ाइल नहीं पढ़ पाया।
+import.columns	Match the columns	कॉलम मिलाएँ
+import.columnsHelp	Tap a field to choose which column of the file it comes from. Use either Amount, or Debit and Credit.	फ़ील्ड दबाकर चुनें कि वह फ़ाइल के किस कॉलम से आता है। या तो रकम इस्तेमाल करें, या डेबिट और क्रेडिट।
+import.noColumn	Not in this file	इस फ़ाइल में नहीं
+import.columnN	Column {n}	कॉलम {n}
+import.defaultAccount	Account for rows without one: {name}	बिना खाते की पंक्तियों का खाता: {name}
+import.preview	Preview	पूर्वावलोकन
+import.ready	{count} rows ready to import	{count} पंक्तियाँ इम्पोर्ट के लिए तैयार
+import.skipped	{count} rows will be skipped	{count} पंक्तियाँ छोड़ी जाएँगी
+import.skippedLines	File lines: {lines}	फ़ाइल की पंक्तियाँ: {lines}
+import.unknownCategories	{count} category names not recognised (imported without a category)	{count} श्रेणी नाम नहीं पहचाने गए (बिना श्रेणी के इम्पोर्ट होंगे)
+import.importN	Import {count}	{count} इम्पोर्ट करें
+import.done	{count} transactions imported	{count} लेन-देन इम्पोर्ट हुए
+import.fieldDate	Date	तारीख
+import.fieldAmount	Amount	रकम
+import.fieldDebit	Debit	डेबिट
+import.fieldCredit	Credit	क्रेडिट
+import.fieldType	Type	प्रकार
+import.fieldAccount	Account	खाता
+import.fieldToAccount	To account	किस खाते में
+import.fieldCategory	Category	श्रेणी
+import.fieldPayee	Payee or description	नाम या विवरण
+import.fieldNote	Note	नोट
+import.fieldMethod	Method	तरीका
+import.fieldTags	Tags	टैग
+restore.fromFile	Restore from a JSON file	JSON फ़ाइल से वापस लाएँ
+restore.fromFileSub	A full export or a downloaded backup	पूरा एक्सपोर्ट या डाउनलोड किया बैकअप
+restore.notBackup	That file is not a Ledger backup.	वह फ़ाइल Ledger का बैकअप नहीं है।
+restore.newer	That backup was made by a newer version of Ledger. Update the app, then try again.	वह बैकअप Ledger के नए संस्करण से बना है। ऐप अपडेट करें, फिर कोशिश करें।

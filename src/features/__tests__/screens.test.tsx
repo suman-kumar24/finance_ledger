@@ -579,3 +579,43 @@ describe('Phase 7: SMS import', () => {
     expect(screen.getByText('1 to review')).toBeTruthy();
   });
 });
+
+describe('Phase 8 screens', () => {
+  /* eslint-disable @typescript-eslint/no-require-imports */
+  const BackupSettings = require('@/app/settings/backup').default;
+  const ExportImport = require('@/app/settings/export').default;
+  const files = require('@/features/files');
+  /* eslint-enable @typescript-eslint/no-require-imports */
+
+  it('shows backup off, then connects Google Drive on request only', async () => {
+    seedBasics(db);
+    await renderScreen(<BackupSettings />);
+    expect(screen.getByText('Backup is off')).toBeTruthy();
+    expect(getSettings(db).backupEnabled).toBe(false);
+    await fireEvent.press(screen.getByLabelText('Connect Google Drive'));
+    expect(getSettings(db)).toMatchObject({
+      backupEnabled: true,
+      backupAccount: 'me@example.invalid',
+    });
+  });
+
+  it('exports CSV through the share sheet', async () => {
+    const { bank } = seedBasics(db);
+    createTransaction(db, {
+      type: 'expense',
+      amount: 250_00,
+      day: today,
+      accountId: bank.id,
+      payee: 'Shop',
+    });
+    const share = jest.spyOn(files, 'shareTextFile').mockResolvedValue(true);
+    await renderScreen(<ExportImport />);
+    await fireEvent.press(screen.getByLabelText(/All transactions as CSV/));
+    expect(share).toHaveBeenCalledWith(
+      expect.stringMatching(/^ledger-transactions-.*\.csv$/),
+      expect.stringContaining('Shop'),
+      'text/csv',
+    );
+    expect(getSettings(db).lastExportAt).not.toBeNull();
+  });
+});

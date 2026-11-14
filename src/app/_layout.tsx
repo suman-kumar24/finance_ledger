@@ -6,6 +6,8 @@ import { AppState, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import '@/backup/background';
+import { runAutoBackup } from '@/backup/service';
 import { runMaintenance } from '@/data/maintenance';
 import { getDb, initDatabase } from '@/db/client';
 import { scanSms, startSmsListener } from '@/features/smsSync';
@@ -34,6 +36,7 @@ function AppShell() {
         runMaintenance(getDb(), dayFromDate(new Date()));
         void syncNotifications(getDb());
         void scanSms(getDb()).catch(() => null);
+        void runAutoBackup(getDb());
       }
     });
     return () => sub.remove();
@@ -84,6 +87,7 @@ export default function RootLayout() {
       .then((db) => {
         runMaintenance(db, dayFromDate(new Date()));
         void syncNotifications(db);
+        void runAutoBackup(db);
         setReady(true);
       })
       .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))
